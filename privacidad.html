@@ -21,6 +21,7 @@
     h1 { font-size: 1.75rem; font-weight: 700; margin-top: .5rem; }
     .updated { color: #8FA8C0; font-size: .875rem; margin-top: .25rem; }
     h2 { font-size: 1.1rem; font-weight: 700; color: #1D9E75; margin: 2rem 0 .5rem; }
+    h3 { font-size: 1rem; font-weight: 700; color: #F5F0E8; margin: 1.25rem 0 .5rem; }
     p, li { color: #D0D8E0; }
     ul { padding-left: 1.5rem; margin-top: .5rem; }
     li { margin-bottom: .25rem; }
@@ -32,46 +33,62 @@
   <header>
     <div class="logo">SAVERI</div>
     <h1>Política de Privacidad</h1>
-    <div class="updated">Última actualización: junio 2026</div>
+    <div class="updated">Última actualización: 13 de septiembre de 2026</div>
   </header>
 
   <h2>1. Quiénes somos</h2>
-  <p>SAVERI es una plataforma de información sobre seguridad ciudadana basada en fuentes públicas y aportaciones voluntarias de usuarios. Operamos bajo jurisdicción de la Unión Europea con servidores en Irlanda.</p>
+  <p>SAVERI es una plataforma de información sobre seguridad ciudadana basada en fuentes públicas (prensa, datos policiales abiertos) y aportaciones voluntarias de usuarios del bot de Telegram <strong>@SAVERIOFICIAL_BOT</strong>. Operamos bajo jurisdicción de la Unión Europea, con nuestra base de datos alojada en Frankfurt (Alemania) — Espacio Económico Europeo.</p>
   <p>Contacto: <a href="mailto:legal@saveri.es">legal@saveri.es</a></p>
 
   <h2>2. Qué datos recogemos</h2>
   <ul>
     <li>Identificador de Telegram (número anónimo, no nombre ni teléfono)</li>
-    <li>Consultas realizadas (zona geográfica, fecha, hora)</li>
-    <li>Contenido aportado voluntariamente (texto, imágenes, vídeos)</li>
-    <li>Fecha de primer uso y número total de consultas</li>
+    <li>Consultas de zona que nos haces (barrio, calle o municipio que escribes o seleccionas)</li>
+    <li>Ubicación GPS puntual, <strong>solo si tú decides pulsar el botón "¿Dónde estás ahora?"</strong> — la usamos en el momento para encontrar la zona más cercana; no la guardamos como historial de movimientos</li>
+    <li>Zonas a las que te suscribes para recibir alertas, si activas esa función</li>
+    <li>Contenido aportado voluntariamente al hacer un reporte (texto, imágenes, vídeos o notas de voz)</li>
+    <li>Número total de consultas realizadas y fecha de tu primer uso, para saber cuánta confianza dar a tus aportaciones (ver apartado 6)</li>
   </ul>
 
   <h2>3. Lo que nunca recogemos</h2>
   <ul>
     <li>Nombre, apellidos ni DNI/NIE</li>
     <li>Número de teléfono</li>
-    <li>Correo electrónico (salvo solicitud expresa de verificación FFCCS)</li>
+    <li>Correo electrónico (salvo solicitud expresa de verificación de un agente de las Fuerzas y Cuerpos de Seguridad)</li>
     <li>Datos de pago</li>
-    <li>Localización GPS en tiempo real</li>
-    <li>Datos de salud, ideología, religión u origen étnico</li>
+    <li>Un historial de tu ubicación a lo largo del tiempo — solo usamos tu ubicación puntual, cuando tú la compartes, para responder a esa consulta concreta</li>
+    <li>Datos de salud, ideología, religión u origen étnico — si los mencionas dentro de un reporte, no los usamos para clasificar, mostrar ni compartir esa información con nadie (ver apartado 5)</li>
   </ul>
 
   <h2>4. Base legal del tratamiento</h2>
-  <p>El tratamiento se basa en el consentimiento explícito (Art. 6.1.a RGPD) prestado al iniciar el uso del servicio. Puedes retirar tu consentimiento en cualquier momento escribiendo a <a href="mailto:legal@saveri.es">legal@saveri.es</a>.</p>
+  <p>La base legal varía según lo que hagas en el bot:</p>
+  <ul>
+    <li><strong>Consultar una zona:</strong> lo hacemos porque tú nos lo pides directamente (Art. 6.1.b RGPD — es la prestación del servicio que nos solicitas al escribirnos). No necesitamos pedirte un consentimiento aparte para esto, del mismo modo que un buscador no te pide permiso especial cada vez que escribes algo.</li>
+    <li><strong>Enviarnos un reporte (UGC):</strong> consentimiento explícito (Art. 6.1.a RGPD), que nos das en el momento concreto en que decides escribir y enviar tu aportación — te lo recordamos justo antes de ese paso. Puedes retirarlo en cualquier momento escribiendo a <a href="mailto:legal@saveri.es">legal@saveri.es</a>, indicando que quieres que eliminemos un reporte ya enviado.
+      <br>Si tu reporte incluye datos especialmente sensibles (por ejemplo, sobre salud o una agresión sexual), lo conservamos igualmente íntegro porque puede tener valor como prueba ante una eventual actuación policial o judicial (Art. 9.2.f RGPD) — pero nunca lo usamos para elaborar estadísticas públicas ni lo mostramos de forma identificable a nadie, salvo el supuesto de cesión a Fuerzas y Cuerpos de Seguridad descrito en el apartado 5.</li>
+    <li><strong>Suscribirte a alertas de una zona:</strong> es un servicio que activas tú mismo a tu petición (Art. 6.1.b RGPD) y que puedes cancelar en cualquier momento.</li>
+    <li><strong>Analítica de uso del bot</strong> (qué funciones se usan y con qué frecuencia, para mejorar el producto): interés legítimo (Art. 6.1.f RGPD — significa que no te pedimos permiso expreso porque el impacto en tu privacidad es bajo, pero sí puedes oponerte). Usamos un identificador seudonimizado, nunca tu identificador real de Telegram, y nunca el contenido de tus consultas o aportaciones. Puedes oponerte a este tratamiento en cualquier momento escribiendo a <a href="mailto:legal@saveri.es">legal@saveri.es</a>.</li>
+  </ul>
+
+  <h3>4.1 Aviso de lanzamiento de la app</h3>
+  <p>Si el usuario pulsa <em>«Avísame cuando la app esté lista»</em>, guardamos únicamente su identificador de Telegram (user ID) para enviarle una notificación única cuando la app esté disponible. Este tratamiento se basa en el consentimiento explícito del usuario (Art. 6.1.a RGPD). El usuario puede retirar su consentimiento en cualquier momento escribiendo <strong>/olvidame</strong> en el bot.</p>
 
   <h2>5. Terceros y transferencias</h2>
   <ul>
-    <li><strong>Supabase (Irlanda)</strong>: base de datos. Cumple RGPD.</li>
+    <li><strong>Supabase (Frankfurt, Alemania)</strong>: base de datos. Cumple RGPD, sin transferencia fuera del Espacio Económico Europeo.</li>
     <li><strong>Telegram</strong>: mensajería. Sus propios términos aplican.</li>
-    <li><strong>Anthropic</strong>: procesamiento NLP de artículos públicos (no datos de usuario).</li>
+    <li><strong>Anthropic (Estados Unidos)</strong>: usado únicamente para clasificar automáticamente artículos de prensa pública sobre incidentes (identificar tipo de incidente y ubicación aproximada) — nunca para procesar el contenido de tus consultas ni de tus reportes. La transferencia a Estados Unidos está amparada por cláusulas contractuales tipo de la Unión Europea, incorporadas automáticamente en sus términos de servicio. No usamos inteligencia artificial sobre tus datos personales; esa función está bloqueada internamente hasta cumplir condiciones adicionales de protección de datos y, si se activa alguna vez, actualizaremos este aviso antes de hacerlo.</li>
+    <li><strong>PostHog (instancia UE, Frankfurt)</strong>: analítica de uso del bot, con identificador seudonimizado — nunca tu identificador real de Telegram ni el contenido de tus mensajes. Sin transferencia fuera del Espacio Económico Europeo.</li>
+    <li><strong>Backblaze (Estados Unidos, almacenamiento en región UE)</strong>: conservamos una copia íntegra y verificable de los artículos de prensa que procesamos, como prueba de que la información ya era pública antes de que la tratáramos. No incluye contenido enviado por usuarios del bot. La transferencia está amparada igualmente por cláusulas contractuales tipo de la Unión Europea.</li>
   </ul>
-  <p>No vendemos, cedemos ni comercializamos datos de usuarios a terceros.</p>
+  <p>No vendemos ni comercializamos tus datos con nadie. Solo cedemos el contenido de un reporte concreto a las <strong>Fuerzas y Cuerpos de Seguridad</strong> cuando existe una obligación legal de hacerlo (Art. 6.1.c RGPD): un agente identificado nos presenta un oficio motivado con referencia a diligencias policiales o judiciales, una persona de SAVERI revisa y aprueba manualmente cada solicitud antes de entregar nada, y registramos cada entrega (y cada rechazo) para poder acreditarlo. No entregamos nada por canales no verificados ni de forma automática.</p>
 
   <h2>6. Retención de datos</h2>
   <ul>
-    <li>Contenidos UGC: 90 días desde la aportación, luego eliminación automática</li>
-    <li>Registro de consultas: 12 meses</li>
+    <li>Contenidos UGC (texto, imágenes, vídeo, audio): 90 días desde la aportación si no se ha escalado a un procedimiento; los escalados siguen el plazo del procedimiento correspondiente</li>
+    <li>Contador de consultas y fecha de primer uso: se mantiene mientras uses el bot, para calcular el nivel de confianza en tus aportaciones — no incluye el contenido de tus búsquedas, solo el número</li>
+    <li>Alertas de zona: 7 días tras notificarte o expirar la alerta</li>
+    <li>Datos de analítica de uso (PostHog): 90 días</li>
     <li>Solicitudes de eliminación: 30 días hábiles</li>
   </ul>
 
@@ -80,7 +97,7 @@
   <p>También puedes presentar reclamación ante tu autoridad de control nacional (en España: AEPD, <a href="https://www.aepd.es" target="_blank" rel="noopener">aepd.es</a>).</p>
 
   <h2>8. Seguridad</h2>
-  <p>Los datos se almacenan cifrados en reposo. Las comunicaciones se realizan siempre mediante TLS. El acceso interno está restringido por roles y auditable.</p>
+  <p>Los datos se almacenan cifrados en reposo. Las comunicaciones se realizan siempre mediante TLS. El acceso interno está restringido por roles y auditable. Determinados registros con valor de prueba (por ejemplo, artículos de prensa originales) se conservan además con medidas adicionales de integridad que impiden su modificación posterior.</p>
 
   <h2>9. Menores de edad</h2>
   <p>SAVERI no está dirigido a menores de 16 años. Si detectamos uso por menores, eliminamos los datos inmediatamente.</p>
