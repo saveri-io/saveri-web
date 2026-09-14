@@ -28,7 +28,25 @@
     table { width: 100%; border-collapse: collapse; margin-top: .75rem; font-size: .9rem; }
     th { background: #1D3A5A; color: #1D9E75; text-align: left; padding: .5rem .75rem; }
     td { padding: .4rem .75rem; border-bottom: 1px solid #1D3A5A; color: #D0D8E0; }
+    td.ref { color: #8FA8C0; font-size: .82rem; white-space: nowrap; }
     .badge { display: inline-block; width: .85rem; text-align: center; }
+    .nota-honestidad {
+      background: #0D2238;
+      border-left: 3px solid #1D9E75;
+      padding: .75rem 1rem;
+      margin-top: 1rem;
+      font-size: .9rem;
+      color: #A0C4D8;
+    }
+    .mejora-pendiente {
+      background: #0D2238;
+      border-left: 3px solid #4A6A8A;
+      padding: .75rem 1rem;
+      margin-top: .75rem;
+      font-size: .9rem;
+      color: #8FA8C0;
+    }
+    .mejora-pendiente strong { color: #A0C4D8; }
     a { color: #1D9E75; }
     footer { margin-top: 3rem; color: #8FA8C0; font-size: .875rem; border-top: 1px solid #1D3A5A; padding-top: 1.5rem; }
   </style>
@@ -37,7 +55,7 @@
   <header>
     <div class="logo">SAVERI</div>
     <h1>Metodología</h1>
-    <div class="updated">Última actualización: junio 2026 · Versión 1.2</div>
+    <div class="updated">Última actualización: agosto 2026 · Versión 2.0</div>
   </header>
 
   <h2>Fuentes de datos</h2>
@@ -66,33 +84,71 @@
 
   <h2>Cálculo del badge de seguridad</h2>
 
-  <h3>Pesos criminológicos por tipo de delito</h3>
-  <p>Cada incidente contribuye al score de la zona según su peso relativo, basado en la gravedad penal y el impacto en la percepción de seguridad:</p>
+  <h3>Por qué dos señales en lugar de una</h3>
+  <p>Hasta 2004, el FBI estadounidense combinaba todos los delitos en un único "Crime Index". Ese índice fue abandonado porque sumaba delitos graves y leves en una sola cifra: un barrio con muchos robos de bicicleta podía aparecer como "más peligroso" que otro con varios homicidios pero pocos delitos menores. El problema no era estadístico: era conceptual. Mezclar frecuencia y gravedad en un único número produce información engañosa para quien quiere entender si una zona es <em>peligrosa</em> o simplemente <em>activa</em>.</p>
+
+  <p>SAVERI separa las dos dimensiones en señales independientes:</p>
+
+  <h3>Señal A — Gravedad (conteo absoluto)</h3>
+  <p>Cuenta los incidentes de las categorías más graves registrados en un radio de 800 m en los últimos 180 días: homicidios y asesinatos (arts. 138–139 CP), agresiones sexuales (arts. 178–180 CP) y robos con violencia o intimidación (art. 242 CP).</p>
+
+  <div class="nota-honestidad">
+    <strong>Por qué estas tres categorías:</strong> son las que el Código Penal español tipifica con pena privativa de libertad más grave en su tipo básico —entre 1 y 25 años—, y las que los estudios de victimización sitúan consistentemente en la cima de la percepción de inseguridad ciudadana. El criterio es el Código Penal, no una encuesta: es público, estable y verificable por cualquier persona.
+  </div>
+
   <table>
-    <thead><tr><th>Tipo de incidente</th><th>Peso</th></tr></thead>
+    <thead>
+      <tr><th>Categoría</th><th>Referencia CP</th><th>Pena tipo básico</th></tr>
+    </thead>
     <tbody>
-      <tr><td>Agresión sexual</td><td>64,0</td></tr>
-      <tr><td>Homicidio / asesinato</td><td>10,5</td></tr>
-      <tr><td>Agresión con lesiones</td><td>6,0</td></tr>
-      <tr><td>Robo con violencia</td><td>6,0</td></tr>
-      <tr><td>Ocupación ilegal</td><td>2,8</td></tr>
-      <tr><td>Hurto / carterismo</td><td>2,5</td></tr>
-      <tr><td>Tráfico de drogas</td><td>2,0</td></tr>
-      <tr><td>Alteración del orden público</td><td>1,5</td></tr>
+      <tr><td>Homicidio / asesinato</td><td class="ref">Arts. 138–139</td><td>10–25 años</td></tr>
+      <tr><td>Agresión sexual</td><td class="ref">Arts. 178–180</td><td>1–15 años</td></tr>
+      <tr><td>Robo con violencia</td><td class="ref">Art. 242</td><td>2–5 años</td></tr>
     </tbody>
   </table>
 
-  <h3>Distribución de referencia</h3>
-  <p>El score de cada zona se compara con la distribución real de todos los barrios con datos suficientes (≥ 3 incidentes en 180 días). Los umbrales del badge corresponden a:</p>
+  <p>Los niveles del badge de gravedad se basan en umbrales absolutos:</p>
   <ul>
-    <li><span class="badge">🟢</span> <strong>Zona tranquila</strong> — score por debajo del percentil 40 de la distribución</li>
-    <li><span class="badge">🟡</span> <strong>Zona con actividad</strong> — entre percentiles 40 y 70</li>
-    <li><span class="badge">🟠</span> <strong>Zona en precaución</strong> — entre percentiles 70 y 90</li>
-    <li><span class="badge">🔴</span> <strong>Zona en alerta</strong> — por encima del percentil 90</li>
+    <li><span class="badge">🟢</span> <strong>Sin incidentes graves registrados</strong> — 0 eventos en 180 días</li>
+    <li><span class="badge">🟠</span> <strong>Actividad grave detectada</strong> — 1 o 2 eventos</li>
+    <li><span class="badge">🔴</span> <strong>Incidentes graves frecuentes</strong> — 3 o más eventos</li>
   </ul>
 
-  <h3>Z-score y contexto</h3>
-  <p>Adicionalmente calculamos el z-score (desviaciones estándar respecto a la media de Madrid) para ofrecer contexto comparativo: "actividad similar a la media", "por encima de la media", etc.</p>
+  <div class="mejora-pendiente">
+    <strong>Nota de honestidad sobre el umbral ≥ 3.</strong><br>
+    El corte en 3 eventos se basa en la distribución real de los barrios de Madrid con datos suficientes: el 62% tiene 0 incidentes graves, y solo el 16% llega a 3 o más. Es un corte empíricamente razonable, pero no procede de ningún estándar externo ni de investigación criminológica. Si en el futuro existiera una fuente que establezca un umbral validado externamente, se adoptaría ese criterio.
+  </div>
+
+  <h3>Señal B — Actividad (percentil relativo)</h3>
+  <p>Cuenta los incidentes de las categorías de mayor frecuencia cotidiana: hurtos y carterismo (arts. 234–236 CP), agresiones con lesiones (arts. 147–150 CP), tráfico de drogas (art. 368 CP), ocupación ilegal (art. 245 CP) y alteraciones del orden público (art. 557 CP). El resultado se compara con la distribución real de todos los barrios con datos suficientes (≥ 3 incidentes en 180 días).</p>
+
+  <div class="nota-honestidad">
+    <strong>Por qué "agresión con lesiones" va en la señal de actividad y no en la de gravedad:</strong> los datos de la Policía Municipal de Madrid no incluyen el resultado de la agresión sobre la víctima — no se puede distinguir, a nivel de dato, una pelea de bar con lesión leve de una agresión con lesiones permanentes. Clasificar esta categoría en la señal grave introduciría falsos positivos sistemáticos. Cuando exista el campo <em>resultado_victima</em> (lesión temporal / permanente / muerte, según la escala de la Ley 35/1995), los casos graves pasarán a la señal A. Hasta entonces, se documenta como limitación explícita.
+  </div>
+
+  <ul>
+    <li><span class="badge">🟢</span> <strong>Zona tranquila</strong> — por debajo del percentil 40</li>
+    <li><span class="badge">🟡</span> <strong>Actividad moderada</strong> — entre percentiles 40 y 70</li>
+    <li><span class="badge">🟠</span> <strong>Actividad elevada</strong> — entre percentiles 70 y 90</li>
+    <li><span class="badge">🔴</span> <strong>Actividad alta</strong> — por encima del percentil 90</li>
+  </ul>
+
+  <h3>Badge combinado</h3>
+  <p>Cuando la zona tiene datos suficientes, se muestran las dos señales por separado. Para otros usos internos (comparación de zonas, sesión de usuario), el badge combinado es el peor de los dos: si una señal indica 🔴, el combinado es 🔴, independientemente de la otra.</p>
+
+  <h2>Líneas de mejora documentadas</h2>
+
+  <p>Dos criterios adicionales <strong>no están aplicados hoy</strong>, por falta de fuente suficientemente robusta. Se documentan aquí explícitamente, no como huecos ocultos, sino como mejoras concretas con su motivo:</p>
+
+  <div class="mejora-pendiente">
+    <strong>Percepción ciudadana de miedo por tipo de delito.</strong><br>
+    Las encuestas de victimización disponibles en España (CIS, Ministerio del Interior, Barómetro de Seguridad) miden "delincuencia en general" sin desglose por categoría de delito con periodicidad y muestra suficiente para ser usadas como ponderador cuantitativo. Las fuentes académicas consultadas confirman que no existe hoy en España una encuesta estructural desglosada por tipo de delito análoga a la British Crime Survey o las encuestas ICVS con suficiente representatividad regional. Cuando exista esa fuente, el criterio de percepción entrará en la ponderación. Hasta entonces, no.
+  </div>
+
+  <div class="mejora-pendiente">
+    <strong>Consecuencia sobre la víctima (lesión temporal / permanente / muerte).</strong><br>
+    La Ley 35/1995 establece una escala de indemnización graduada por la consecuencia real del delito sobre la víctima, independientemente de la categoría. Aplicar ese criterio requeriría un campo estructurado de resultado en cada evento y una tasa de completitud alta en los datos. Hoy ese campo no existe en nuestro sistema: los datos de la Policía Municipal (que representan más del 99% del total actual) son conteos de incidentes por categoría sin detalle de resultado individual. La información de consecuencia está parcialmente disponible en los textos de prensa que ya procesa nuestro sistema, pero en un volumen insuficiente para ser estadísticamente significativa a nivel de zona. Esta mejora requiere un cambio en el pipeline de captura y una fuente con mejor cobertura. Queda documentada como trabajo futuro, con su alcance y motivo definidos.
+  </div>
 
   <h2>Corrección por infradenuncia</h2>
   <p>Los delitos registrados representan solo una fracción de los delitos reales. Según el Ministerio del Interior, la tasa de infradenuncia varía entre el 30% (homicidios) y el 80% (agresiones sexuales). En la versión actual no aplicamos corrección explícita, pero esto implica que los scores son conservadores: la realidad puede ser peor que lo registrado.</p>
@@ -105,8 +161,9 @@
     <li>Los datos de prensa tienen sesgo hacia incidentes graves y mediáticos</li>
     <li>Las coordenadas de barrio son centroides aproximados, no la ubicación exacta del incidente</li>
     <li>La cobertura geográfica es desigual: Madrid capital tiene más datos que otros municipios</li>
-    <li>Los incidentes de homicidio expresivo (riñas) no se muestran en el mapa público</li>
+    <li>Los incidentes de homicidio expresivo (riñas impulsivas) no se muestran en el mapa público</li>
     <li>Los incidentes con confianza de geolocalización &lt; 0.6 no se publican hasta revisión manual</li>
+    <li>La escala penal no refleja necesariamente la percepción subjetiva de riesgo del ciudadano medio, ni la consecuencia real sobre la víctima en cada incidente concreto</li>
   </ul>
 
   <h2>Contacto para correcciones</h2>
