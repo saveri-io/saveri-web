@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SAVERI · Seguridad ciudadana con datos reales</title>
+  <meta name="description" content="Pregunta por tu zona en Madrid y recibe una respuesta con datos de la Policía Municipal y prensa verificada. Sin rumores, sin miedo.">
+  <link rel="canonical" href="https://saveri.io/">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0F2B4A;
+      --navy-surface: #14375C;
+      --navy-line: #1D3A5A;
+      --cream: #F5F0E8;
+      --cream-dim: #D0D8E0;
+      --cream-faint: #8FA8C0;
+      --teal: #1D9E75;
+      --teal-hover: #24BB89;
+      --amber: #F59E0B;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--navy);
+      color: var(--cream);
+      font-family: Inter, Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.65;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+    }
+
+    a { color: var(--teal); }
+
+    .wrap {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 1.25rem;
+    }
+
+    header.site {
+      padding: 1.5rem 0;
+    }
+    .logo {
+      color: var(--teal);
+      font-weight: 700;
+      font-size: 1.15rem;
+      letter-spacing: .04em;
+    }
+
+    /* ── Hero ─────────────────────────────────────────────── */
+    .hero {
+      padding: 2.5rem 0 3rem;
+    }
+    .hero h1 {
+      font-size: 2rem;
+      line-height: 1.25;
+      font-weight: 800;
+      text-wrap: balance;
+      max-width: 18ch;
+    }
+    .hero .sub {
+      margin-top: .9rem;
+      color: var(--cream-dim);
+      font-size: 1.05rem;
+      max-width: 42ch;
+    }
+    .hero .sub strong { color: var(--cream); font-weight: 600; }
+
+    .cta-block { margin-top: 1.75rem; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: .5rem;
+      background: var(--teal);
+      color: #06251C;
+      font-weight: 700;
+      font-size: 1.05rem;
+      text-decoration: none;
+      padding: .95rem 1.5rem;
+      border-radius: .6rem;
+      width: 100%;
+      max-width: 420px;
+      transition: background .15s ease;
+    }
+    .btn:hover, .btn:focus-visible { background: var(--teal-hover); }
+    .btn:focus-visible { outline: 3px solid var(--cream); outline-offset: 2px; }
+
+    .micro {
+      margin-top: .65rem;
+      font-size: .875rem;
+      color: var(--cream-faint);
+    }
+    .micro a { color: var(--cream-faint); text-decoration: underline; }
+
+    /* ── Proof block ──────────────────────────────────────── */
+    section { padding: 2.25rem 0; border-top: 1px solid var(--navy-line); }
+
+    .kicker {
+      font-size: .8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: var(--cream-faint);
+      margin-bottom: .9rem;
+    }
+
+    .proof-card {
+      background: var(--navy-surface);
+      border: 1px solid var(--navy-line);
+      border-radius: .75rem;
+      padding: 1.25rem 1.35rem;
+    }
+    .proof-zone {
+      font-weight: 700;
+      font-size: 1.05rem;
+      margin-bottom: .75rem;
+    }
+    .proof-row {
+      display: flex;
+      align-items: baseline;
+      gap: .5rem;
+      font-size: .98rem;
+      color: var(--cream-dim);
+      margin-bottom: .4rem;
+      font-variant-numeric: tabular-nums;
+    }
+    .proof-badge { flex-shrink: 0; }
+    .proof-pct {
+      margin-top: .75rem;
+      padding-top: .75rem;
+      border-top: 1px dashed var(--navy-line);
+      font-size: .92rem;
+      color: var(--cream-dim);
+    }
+    .proof-stamp {
+      margin-top: .9rem;
+      font-size: .78rem;
+      color: var(--cream-faint);
+    }
+
+    .calibration-note {
+      margin-top: .9rem;
+      font-size: .85rem;
+      color: var(--cream-faint);
+    }
+
+    .disclaimer {
+      margin-top: .6rem;
+      font-size: .8rem;
+      color: var(--cream-faint);
+      font-style: italic;
+    }
+
+    .cta-repeat { margin-top: 1.5rem; }
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: .5rem;
+      background: transparent;
+      border: 1.5px solid var(--teal);
+      color: var(--teal);
+      font-weight: 700;
+      font-size: .98rem;
+      text-decoration: none;
+      padding: .8rem 1.35rem;
+      border-radius: .6rem;
+      width: 100%;
+      max-width: 420px;
+      transition: background .15s ease, color .15s ease;
+    }
+    .btn-outline:hover, .btn-outline:focus-visible { background: var(--teal); color: #06251C; }
+    .btn-outline:focus-visible { outline: 3px solid var(--cream); outline-offset: 2px; }
+
+    /* ── Source / utility ─────────────────────────────────── */
+    h2 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--teal);
+      margin-bottom: .75rem;
+    }
+    section p { color: var(--cream-dim); max-width: 56ch; }
+    section p + p { margin-top: .6rem; }
+
+    /* ── Waitlist ─────────────────────────────────────────── */
+    .waitlist {
+      background: var(--navy-surface);
+      border-top: none;
+      border-radius: .9rem;
+      margin: 0 0 2.25rem;
+    }
+    .waitlist .wrap-inner { padding: 1.75rem 1.5rem; }
+    .waitlist h2 { color: var(--cream); }
+    .waitlist p { color: var(--cream-dim); }
+    .waitlist .cta-block { margin-top: 1.25rem; }
+
+    /* ── Footer ───────────────────────────────────────────── */
+    footer.site {
+      border-top: 1px solid var(--navy-line);
+      padding: 1.5rem 0 2.5rem;
+      font-size: .875rem;
+      color: var(--cream-faint);
+    }
+    footer.site a { color: var(--cream-faint); text-decoration: underline; margin-right: 1rem; }
+    footer.site a:last-child { margin-right: 0; }
+
+    @media (min-width: 640px) {
+      .hero h1 { font-size: 2.5rem; max-width: 20ch; }
+      .btn, .btn-outline { width: auto; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site">
+    <div class="wrap">
+      <div class="logo">SAVERI</div>
+    </div>
+  </header>
+
+  <div class="wrap">
+
+    <section class="hero" style="border-top: none; padding-top: .5rem;">
+      <h1>Pregunta por tu zona. Te respondemos con datos, no con miedo.</h1>
+      <p class="sub"><strong>Policía Municipal de Madrid</strong> + prensa verificada. Sin rumores.</p>
+      <div class="cta-block">
+        <a class="btn" href="https://t.me/SAVERIOFICIAL_BOT" target="_blank" rel="noopener">Abrir el bot en Telegram</a>
+        <p class="micro">Gratis. Sin registro. Escribe el nombre de tu zona y responde en segundos.</p>
+        <p class="micro"><a href="https://telegram.org/apps" target="_blank" rel="noopener">¿No tienes Telegram? Es gratis y se instala en menos de un minuto →</a></p>
+      </div>
+    </section>
+
+    <section id="prueba">
+      <div class="kicker">Así respondemos cuando nos preguntan por una zona real:</div>
+      <div class="proof-card">
+        <div class="proof-zone">📍 Trafalgar (Chamberí) · Madrid</div>
+        <div class="proof-row"><span class="proof-badge">🟠</span> Carterismo y hurtos — 19 en 180 días</div>
+        <div class="proof-row"><span class="proof-badge">🟠</span> Altercados y peleas — 22 en 180 días</div>
+        <div class="proof-pct">📊 Más incidentes registrados que en el 65% de las zonas de Madrid <span style="color: var(--cream-faint);">(percentil 65 · ventana de 180 días)</span></div>
+        <div class="proof-stamp">Captura real · 14 de septiembre de 2026</div>
+      </div>
+      <p class="calibration-note">Ejemplo real entre más de 130 zonas que cubrimos en Madrid — no todas tienen datos así.</p>
+      <p class="disclaimer">Cifras de ejemplo con fecha fija — no se actualizan en esta página. Pregunta por tu zona en el bot para ver el dato actual.</p>
+      <div class="cta-repeat">
+        <a class="btn-outline" href="https://t.me/SAVERIOFICIAL_BOT" target="_blank" rel="noopener">Pregunta por la tuya en Telegram</a>
+      </div>
+    </section>
+
+    <section id="fuente">
+      <h2>De dónde sale el dato</h2>
+      <p>Cada dato tiene origen verificable: Policía Municipal de Madrid y prensa verificada, sin fuentes anónimas ni rumores de redes sociales.</p>
+      <p><a href="/metodologia.html">Ver metodología completa →</a></p>
+    </section>
+
+    <section id="utilidad">
+      <h2>Utilidad, no miedo</h2>
+      <p>Saber no es alarmarse. Es decidir con información real: qué calle evitar de noche, si merece la pena reforzar la puerta, si esa zona nueva es tan segura como parece en las fotos del piso.</p>
+    </section>
+
+  </div>
+
+  <div class="wrap">
+    <section class="waitlist">
+      <div class="wrap-inner">
+        <h2>La app está en construcción — el bot ya funciona hoy</h2>
+        <p>El motor de datos que acabas de ver arriba ya está en producción. Estamos construyendo la app: mapa visual, alertas por zona, comparador de barrios. Déjanos tu Telegram y te avisamos el día que esté lista.</p>
+        <div class="cta-block">
+          <a class="btn" href="https://t.me/SAVERIOFICIAL_BOT" target="_blank" rel="noopener">Avísame cuando esté lista</a>
+          <p class="micro">Sin fecha inventada — te escribimos cuando esté lista, ni antes ni después.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <footer class="site">
+    <div class="wrap">
+      <a href="/privacidad.html">Privacidad</a>
+      <a href="/terminos.html">Términos de uso</a>
+      <a href="/metodologia.html">Metodología</a>
+    </div>
+  </footer>
+
+</body>
+</html>
