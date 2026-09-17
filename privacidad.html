@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Privacidad · SAVERI</title>
+  <link rel="stylesheet" href="/assets/nav.css">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body {
@@ -33,7 +34,23 @@
 </head>
 <body>
   <header>
-    <a href="/" class="logo">SAVERI</a>
+    <div class="site-header">
+      <a href="/" class="logo">SAVERI</a>
+      <div class="site-nav">
+        <button type="button" id="nav-toggle" class="nav-toggle"
+                aria-expanded="true" aria-controls="nav-panel" aria-label="Menú">
+          <span class="nav-toggle-icon" aria-hidden="true"></span>
+        </button>
+        <nav id="nav-panel" class="nav-panel" aria-label="Menú principal">
+          <ul>
+            <li><a href="/">Inicio</a></li>
+            <li><a href="/metodologia.html">Metodología</a></li>
+            <li><a href="/privacidad.html" aria-current="page">Privacidad</a></li>
+            <li><a href="/terminos.html">Términos</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
     <h1>Política de Privacidad</h1>
     <div class="updated">Última actualización: 13 de septiembre de 2026</div>
   </header>
@@ -109,7 +126,14 @@
   <p>Notificaremos cambios relevantes mediante un mensaje en el bot con al menos 7 días de antelación. La versión vigente está siempre en <a href="https://saveri.io/privacidad">saveri.io/privacidad</a>.</p>
 
   <footer>
-    <p>SAVERI · <a href="/">Inicio</a> · <a href="mailto:legal@saveri.io">legal@saveri.io</a> · <a href="/terminos.html">Términos de uso</a> · <a href="/metodologia.html">Metodología</a></p>
+    <nav class="footer-nav" aria-label="Enlaces del pie">
+      <a href="/">Inicio</a><span class="sep">·</span>
+      <a href="/metodologia.html">Metodología</a><span class="sep">·</span>
+      <a href="/privacidad.html" aria-current="page">Privacidad</a><span class="sep">·</span>
+      <a href="/terminos.html">Términos</a>
+    </nav>
+    <p>SAVERI · <a href="mailto:legal@saveri.io">legal@saveri.io</a></p>
   </footer>
+  <script src="/assets/nav.js"></script>
 </body>
 </html>

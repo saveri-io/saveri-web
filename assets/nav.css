@@ -1,0 +1,87 @@
+/* SAVERI · Componente de navegación compartido — index.html, metodologia.html,
+   privacidad.html, terminos.html. Editar SOLO aquí; no dupliques estas reglas
+   dentro del <style> de cada página. */
+
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.site-nav { position: relative; }
+
+.nav-toggle {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  padding: 0;
+}
+.nav-toggle:hover { background: rgba(245, 240, 232, .08); }
+.nav-toggle:focus-visible { outline: 2px solid #1D9E75; outline-offset: 2px; }
+
+.nav-toggle-icon,
+.nav-toggle-icon::before,
+.nav-toggle-icon::after {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: #F5F0E8;
+  border-radius: 1px;
+}
+.nav-toggle-icon { position: relative; }
+.nav-toggle-icon::before,
+.nav-toggle-icon::after { content: ""; position: absolute; left: 0; }
+.nav-toggle-icon::before { top: -7px; }
+.nav-toggle-icon::after { top: 7px; }
+
+.nav-panel {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  min-width: 190px;
+  background: #1D3A5A;
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .35);
+  padding: .4rem;
+  z-index: 20;
+}
+.nav-panel[hidden] { display: none; }
+
+.nav-panel ul { list-style: none; margin: 0; padding: 0; }
+.nav-panel li + li { margin-top: .1rem; }
+
+.nav-panel a {
+  display: block;
+  padding: .65rem .75rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.3;
+  color: #F5F0E8;
+  text-decoration: none;
+}
+.nav-panel a:hover,
+.nav-panel a:focus-visible { background: #0F2B4A; outline: none; }
+.nav-panel a:focus-visible { outline: 2px solid #1D9E75; outline-offset: -2px; }
+.nav-panel a[aria-current="page"] { color: #1D9E75; font-weight: 700; }
+
+/* Footer: mismo orden y textos que .nav-panel, siempre visible — no depende
+   de JS, y evita tener que volver arriba en páginas largas. */
+.footer-nav { margin-bottom: .5rem; }
+.footer-nav a {
+  font-size: .875rem;
+  color: #8FA8C0;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.footer-nav a:hover,
+.footer-nav a:focus-visible { color: #24BB89; }
+.footer-nav a[aria-current="page"] { color: #F5F0E8; text-decoration: none; }
+.footer-nav .sep { color: #4A6A8A; margin: 0 .35rem; }

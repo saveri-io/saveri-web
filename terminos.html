@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Términos de uso · SAVERI</title>
+  <link rel="stylesheet" href="/assets/nav.css">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body {
@@ -32,7 +33,23 @@
 </head>
 <body>
   <header>
-    <a href="/" class="logo">SAVERI</a>
+    <div class="site-header">
+      <a href="/" class="logo">SAVERI</a>
+      <div class="site-nav">
+        <button type="button" id="nav-toggle" class="nav-toggle"
+                aria-expanded="true" aria-controls="nav-panel" aria-label="Menú">
+          <span class="nav-toggle-icon" aria-hidden="true"></span>
+        </button>
+        <nav id="nav-panel" class="nav-panel" aria-label="Menú principal">
+          <ul>
+            <li><a href="/">Inicio</a></li>
+            <li><a href="/metodologia.html">Metodología</a></li>
+            <li><a href="/privacidad.html">Privacidad</a></li>
+            <li><a href="/terminos.html" aria-current="page">Términos</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
     <h1>Términos de Uso</h1>
     <div class="updated">Última actualización: junio 2026</div>
   </header>
@@ -73,7 +90,14 @@
   Para consultas generales: <a href="mailto:hola@saveri.io">hola@saveri.io</a></p>
 
   <footer>
-    <p>SAVERI · <a href="/">Inicio</a> · <a href="/privacidad.html">Privacidad</a> · <a href="/metodologia.html">Metodología</a></p>
+    <nav class="footer-nav" aria-label="Enlaces del pie">
+      <a href="/">Inicio</a><span class="sep">·</span>
+      <a href="/metodologia.html">Metodología</a><span class="sep">·</span>
+      <a href="/privacidad.html">Privacidad</a><span class="sep">·</span>
+      <a href="/terminos.html" aria-current="page">Términos</a>
+    </nav>
+    <p>SAVERI · <a href="mailto:legal@saveri.io">legal@saveri.io</a></p>
   </footer>
+  <script src="/assets/nav.js"></script>
 </body>
 </html>

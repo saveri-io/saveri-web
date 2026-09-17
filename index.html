@@ -6,6 +6,7 @@
   <title>SAVERI · Seguridad ciudadana con datos reales</title>
   <meta name="description" content="Pregunta por tu zona en Madrid y recibe una respuesta con datos de la Policía Municipal y prensa verificada. Sin rumores, sin miedo.">
   <link rel="canonical" href="https://saveri.io/">
+  <link rel="stylesheet" href="/assets/nav.css">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -269,11 +270,7 @@
     footer.site {
       border-top: 1px solid var(--navy-line);
       padding: 1.5rem 0 2.5rem;
-      font-size: .8rem;
-      color: var(--cream-faint);
     }
-    footer.site a { color: var(--cream-faint); text-decoration: underline; margin-right: 1rem; }
-    footer.site a:last-child { margin-right: 0; }
 
     @media (min-width: 640px) {
       .hero { padding-bottom: 3rem; }
@@ -286,7 +283,23 @@
 
   <header class="site">
     <div class="wrap">
-      <a href="/" class="logo">SAVERI</a>
+      <div class="site-header">
+        <a href="/" class="logo">SAVERI</a>
+        <div class="site-nav">
+          <button type="button" id="nav-toggle" class="nav-toggle"
+                  aria-expanded="true" aria-controls="nav-panel" aria-label="Menú">
+            <span class="nav-toggle-icon" aria-hidden="true"></span>
+          </button>
+          <nav id="nav-panel" class="nav-panel" aria-label="Menú principal">
+            <ul>
+              <li><a href="/" aria-current="page">Inicio</a></li>
+              <li><a href="/metodologia.html">Metodología</a></li>
+              <li><a href="/privacidad.html">Privacidad</a></li>
+              <li><a href="/terminos.html">Términos</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
     </div>
   </header>
 
@@ -346,11 +359,15 @@
 
   <footer class="site">
     <div class="wrap">
-      <a href="/privacidad.html">Privacidad</a>
-      <a href="/terminos.html">Términos de uso</a>
-      <a href="/metodologia.html">Metodología</a>
+      <nav class="footer-nav" aria-label="Enlaces del pie">
+        <a href="/" aria-current="page">Inicio</a><span class="sep">·</span>
+        <a href="/metodologia.html">Metodología</a><span class="sep">·</span>
+        <a href="/privacidad.html">Privacidad</a><span class="sep">·</span>
+        <a href="/terminos.html">Términos</a>
+      </nav>
     </div>
   </footer>
+  <script src="/assets/nav.js"></script>
 
 </body>
 </html>
