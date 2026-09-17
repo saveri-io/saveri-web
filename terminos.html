@@ -17,7 +17,8 @@
       margin: 0 auto;
     }
     header { margin-bottom: 2.5rem; }
-    .logo { color: #1D9E75; font-weight: 700; font-size: 1.25rem; letter-spacing: .04em; }
+    .logo { color: #1D9E75; font-weight: 700; font-size: 1.25rem; letter-spacing: .04em; text-decoration: none; }
+    .logo:focus-visible { outline: 2px solid #1D9E75; outline-offset: 3px; }
     h1 { font-size: 1.75rem; font-weight: 700; margin-top: .5rem; }
     .updated { color: #8FA8C0; font-size: .875rem; margin-top: .25rem; }
     h2 { font-size: 1.1rem; font-weight: 700; color: #1D9E75; margin: 2rem 0 .5rem; }
@@ -30,7 +31,7 @@
 </head>
 <body>
   <header>
-    <div class="logo">SAVERI</div>
+    <a href="/" class="logo">SAVERI</a>
     <h1>Términos de Uso</h1>
     <div class="updated">Última actualización: junio 2026</div>
   </header>
@@ -71,7 +72,7 @@
   Para consultas generales: <a href="mailto:hola@saveri.io">hola@saveri.io</a></p>
 
   <footer>
-    <p>SAVERI · <a href="/privacidad.html">Privacidad</a> · <a href="/metodologia.html">Metodología</a></p>
+    <p>SAVERI · <a href="/">Inicio</a> · <a href="/privacidad.html">Privacidad</a> · <a href="/metodologia.html">Metodología</a></p>
   </footer>
 </body>
 </html>

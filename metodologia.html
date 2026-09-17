@@ -17,7 +17,8 @@
       margin: 0 auto;
     }
     header { margin-bottom: 2.5rem; }
-    .logo { color: #1D9E75; font-weight: 700; font-size: 1.25rem; letter-spacing: .04em; }
+    .logo { color: #1D9E75; font-weight: 700; font-size: 1.25rem; letter-spacing: .04em; text-decoration: none; }
+    .logo:focus-visible { outline: 2px solid #1D9E75; outline-offset: 3px; }
     h1 { font-size: 1.75rem; font-weight: 700; margin-top: .5rem; }
     .updated { color: #8FA8C0; font-size: .875rem; margin-top: .25rem; }
     h2 { font-size: 1.1rem; font-weight: 700; color: #1D9E75; margin: 2rem 0 .5rem; }
@@ -53,9 +54,9 @@
 </head>
 <body>
   <header>
-    <div class="logo">SAVERI</div>
+    <a href="/" class="logo">SAVERI</a>
     <h1>Metodología</h1>
-    <div class="updated">Última actualización: agosto 2026 · Versión 2.0</div>
+    <div class="updated">Última actualización: septiembre 2026 · Versión 2.1</div>
   </header>
 
   <h2>Fuentes de datos</h2>
@@ -84,16 +85,16 @@
 
   <h2>Cálculo del badge de seguridad</h2>
 
-  <h3>Por qué dos señales en lugar de una</h3>
+  <h3>Por qué varias señales en lugar de una</h3>
   <p>Hasta 2004, el FBI estadounidense combinaba todos los delitos en un único "Crime Index". Ese índice fue abandonado porque sumaba delitos graves y leves en una sola cifra: un barrio con muchos robos de bicicleta podía aparecer como "más peligroso" que otro con varios homicidios pero pocos delitos menores. El problema no era estadístico: era conceptual. Mezclar frecuencia y gravedad en un único número produce información engañosa para quien quiere entender si una zona es <em>peligrosa</em> o simplemente <em>activa</em>.</p>
 
-  <p>SAVERI separa las dos dimensiones en señales independientes:</p>
+  <p>SAVERI separa tres dimensiones en señales independientes:</p>
 
-  <h3>Señal A — Gravedad (conteo absoluto)</h3>
-  <p>Cuenta los incidentes de las categorías más graves registrados en un radio de 800 m en los últimos 180 días: homicidios y asesinatos (arts. 138–139 CP), agresiones sexuales (arts. 178–180 CP) y robos con violencia o intimidación (art. 242 CP).</p>
+  <h3>Señal S1 — Integridad física (conteo absoluto)</h3>
+  <p>Cuenta los incidentes de homicidio/asesinato (arts. 138–139 CP) y agresión sexual (arts. 178–180 CP) registrados en el entorno inmediato del punto consultado, en una ventana de varios meses con masa estadística suficiente.</p>
 
   <div class="nota-honestidad">
-    <strong>Por qué estas tres categorías:</strong> son las que el Código Penal español tipifica con pena privativa de libertad más grave en su tipo básico —entre 1 y 25 años—, y las que los estudios de victimización sitúan consistentemente en la cima de la percepción de inseguridad ciudadana. El criterio es el Código Penal, no una encuesta: es público, estable y verificable por cualquier persona.
+    <strong>Por qué estas dos categorías, y solo estas:</strong> son las que el Código Penal español tipifica con pena privativa de libertad más grave en su tipo básico, y las que los estudios de victimización sitúan consistentemente en la cima de la percepción de inseguridad ciudadana. El criterio es el Código Penal, no una encuesta: es público, estable y verificable por cualquier persona. Esta es la única señal que nunca se oculta por umbral mínimo de datos: un solo homicidio real siempre se muestra.
   </div>
 
   <table>
@@ -103,38 +104,40 @@
     <tbody>
       <tr><td>Homicidio / asesinato</td><td class="ref">Arts. 138–139</td><td>10–25 años</td></tr>
       <tr><td>Agresión sexual</td><td class="ref">Arts. 178–180</td><td>1–15 años</td></tr>
-      <tr><td>Robo con violencia</td><td class="ref">Art. 242</td><td>2–5 años</td></tr>
     </tbody>
   </table>
 
-  <p>Los niveles del badge de gravedad se basan en umbrales absolutos:</p>
+  <p>Los niveles de esta señal se basan en umbrales absolutos, nunca en percentiles (contar en lugar de comparar, precisamente porque son sucesos raros):</p>
   <ul>
-    <li><span class="badge">🟢</span> <strong>Sin incidentes graves registrados</strong> — 0 eventos en 180 días</li>
+    <li><span class="badge">🟢</span> <strong>Sin incidentes graves registrados</strong> — 0 eventos</li>
     <li><span class="badge">🟠</span> <strong>Actividad grave detectada</strong> — 1 o 2 eventos</li>
     <li><span class="badge">🔴</span> <strong>Incidentes graves frecuentes</strong> — 3 o más eventos</li>
   </ul>
 
   <div class="mejora-pendiente">
     <strong>Nota de honestidad sobre el umbral ≥ 3.</strong><br>
-    El corte en 3 eventos se basa en la distribución real de los barrios de Madrid con datos suficientes: el 62% tiene 0 incidentes graves, y solo el 16% llega a 3 o más. Es un corte empíricamente razonable, pero no procede de ningún estándar externo ni de investigación criminológica. Si en el futuro existiera una fuente que establezca un umbral validado externamente, se adoptaría ese criterio.
+    El corte en 3 eventos se basa en la distribución real de los barrios de Madrid con datos suficientes: el 68% tiene 0 incidentes de esta señal, y menos del 1% llega a 3 o más. Es un corte empíricamente razonable, pero no procede de ningún estándar externo ni de investigación criminológica. Si en el futuro existiera una fuente que establezca un umbral validado externamente, se adoptaría ese criterio.
   </div>
 
-  <h3>Señal B — Actividad (percentil relativo)</h3>
-  <p>Cuenta los incidentes de las categorías de mayor frecuencia cotidiana: hurtos y carterismo (arts. 234–236 CP), agresiones con lesiones (arts. 147–150 CP), tráfico de drogas (art. 368 CP), ocupación ilegal (art. 245 CP) y alteraciones del orden público (art. 557 CP). El resultado se compara con la distribución real de todos los barrios con datos suficientes (≥ 3 incidentes en 180 días).</p>
+  <h3>Señal S2 — Patrimonial (percentil relativo)</h3>
+  <p>Cuenta robo con violencia o intimidación (art. 242 CP), hurtos y carterismo (arts. 234–236 CP) y ocupación ilegal (art. 245 CP). El resultado se compara con la distribución real de todos los barrios con datos suficientes.</p>
+
+  <h3>Señal S3 — Otros avisos (percentil relativo)</h3>
+  <p>Cuenta agresiones con lesiones (arts. 147–150 CP), tráfico de drogas (art. 368 CP) y alteraciones del orden público (art. 557 CP). Misma lógica de percentil que S2, calculada de forma independiente.</p>
 
   <div class="nota-honestidad">
-    <strong>Por qué "agresión con lesiones" va en la señal de actividad y no en la de gravedad:</strong> los datos de la Policía Municipal de Madrid no incluyen el resultado de la agresión sobre la víctima — no se puede distinguir, a nivel de dato, una pelea de bar con lesión leve de una agresión con lesiones permanentes. Clasificar esta categoría en la señal grave introduciría falsos positivos sistemáticos. Cuando exista el campo <em>resultado_victima</em> (lesión temporal / permanente / muerte, según la escala de la Ley 35/1995), los casos graves pasarán a la señal A. Hasta entonces, se documenta como limitación explícita.
+    <strong>Por qué "agresión con lesiones" va en Otros avisos y no en Integridad física:</strong> los datos de la Policía Municipal de Madrid no incluyen el resultado de la agresión sobre la víctima — no se puede distinguir, a nivel de dato, una pelea de bar con lesión leve de una agresión con lesiones permanentes. Clasificar esta categoría en la señal de integridad física introduciría falsos positivos sistemáticos. Cuando exista el campo <em>resultado_victima</em> (lesión temporal / permanente / muerte, según la escala de la Ley 35/1995), los casos graves pasarán a S1. Hasta entonces, se documenta como limitación explícita. Por el mismo motivo, <strong>robo con violencia</strong> se mide por percentil (S2) y no por conteo absoluto (S1): el dato de origen no distingue el grado de violencia o intimidación empleado caso por caso.
   </div>
 
+  <p>S2 y S3 comparten la misma escala de percentil, con solo tres niveles (no cuatro): un corte por debajo de la media, uno por encima, y un tercero para la actividad más alta:</p>
   <ul>
-    <li><span class="badge">🟢</span> <strong>Zona tranquila</strong> — por debajo del percentil 40</li>
-    <li><span class="badge">🟡</span> <strong>Actividad moderada</strong> — entre percentiles 40 y 70</li>
-    <li><span class="badge">🟠</span> <strong>Actividad elevada</strong> — entre percentiles 70 y 90</li>
-    <li><span class="badge">🔴</span> <strong>Actividad alta</strong> — por encima del percentil 90</li>
+    <li><span class="badge">🟢</span> <strong>Por debajo de la media de Madrid</strong></li>
+    <li><span class="badge">🟠</span> <strong>Actividad notable</strong> — por encima de la media</li>
+    <li><span class="badge">🔴</span> <strong>Entre los barrios más activos de Madrid</strong></li>
   </ul>
 
-  <h3>Badge combinado</h3>
-  <p>Cuando la zona tiene datos suficientes, se muestran las dos señales por separado. Para otros usos internos (comparación de zonas, sesión de usuario), el badge combinado es el peor de los dos: si una señal indica 🔴, el combinado es 🔴, independientemente de la otra.</p>
+  <h3>Badge de cabecera</h3>
+  <p>Cuando la zona tiene datos suficientes, S2 y S3 se muestran por separado, cada una con su propio nivel. Para la cabecera del resultado y otros usos internos (comparación de zonas, sesión de usuario), gana siempre la peor señal: si S1 tiene 1 o más incidentes, la cabecera es S1 — nunca se oculta por un umbral mínimo, ni siquiera si S2/S3 son bajas. Si S1 es 0, gana la señal (S2 o S3) con el percentil más alto.</p>
 
   <h2>Líneas de mejora documentadas</h2>
 
@@ -154,7 +157,7 @@
   <p>Los delitos registrados representan solo una fracción de los delitos reales. Según el Ministerio del Interior, la tasa de infradenuncia varía entre el 30% (homicidios) y el 80% (agresiones sexuales). En la versión actual no aplicamos corrección explícita, pero esto implica que los scores son conservadores: la realidad puede ser peor que lo registrado.</p>
 
   <h2>Ventana temporal</h2>
-  <p>El análisis de zona usa los últimos 180 días para tener masa estadística suficiente. La sección "Esta semana / Este mes" usa ventanas más cortas para detectar actividad reciente.</p>
+  <p>El análisis de zona usa una ventana de varios meses para tener masa estadística suficiente. La sección "Esta semana / Este mes" usa ventanas más cortas para detectar actividad reciente.</p>
 
   <h2>Limitaciones explícitas</h2>
   <ul>
@@ -170,7 +173,7 @@
   <p>Si detectas un error en los datos o en la metodología, escríbenos a <a href="mailto:hola@saveri.es">hola@saveri.es</a>. Revisamos todas las comunicaciones y respondemos en 48h hábiles.</p>
 
   <footer>
-    <p>SAVERI · <a href="/privacidad.html">Privacidad</a> · <a href="/terminos.html">Términos</a> · <a href="mailto:hola@saveri.es">hola@saveri.es</a></p>
+    <p>SAVERI · <a href="/">Inicio</a> · <a href="/privacidad.html">Privacidad</a> · <a href="/terminos.html">Términos</a> · <a href="mailto:hola@saveri.es">hola@saveri.es</a></p>
   </footer>
 </body>
 </html>
