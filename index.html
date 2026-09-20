@@ -36,6 +36,43 @@
       line-height: 1.65;
     }
 
+    /* Textura de fondo global: rejilla de puntos, referencia sutil a un mapa
+       (líneas de una cuadrícula cartográfica), no a un mapa literal — evita
+       el coste de un asset real y el riesgo de que una geometría de Madrid
+       de verdad se lea como "esta calle está marcada como peligrosa".
+       3% de opacidad: perceptible al mirar, invisible como "decoración" —
+       nunca compite con el contraste de texto (queda detrás de --navy). */
+    body {
+      background-image: radial-gradient(rgba(245, 240, 232, .05) 1px, transparent 1px);
+      background-size: 22px 22px;
+    }
+
+    /* Manchas de color en el hero, en los mismos tokens de zona que ya usan
+       los badges reales de abajo — primer uso del "13-18% de opacidad sobre
+       mapa base" (regla ya fijada en el sistema de diseño) fuera del propio
+       mapa de producto. Deliberadamente SOLO verde/ámbar (zone-safe/teal +
+       amber) — se excluye zone-high (rojo) de cualquier uso decorativo: el
+       titular dice "datos, no miedo", así que ningún elemento ambiental
+       puede sugerir peligro sin que lo respalde un dato real. */
+    .hero {
+      position: relative;
+      isolation: isolate;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: -2rem -1.25rem auto -1.25rem;
+      height: 22rem;
+      z-index: -1;
+      background:
+        radial-gradient(ellipse 60% 45% at 15% 20%, rgba(34, 197, 94, .16), transparent 70%),
+        radial-gradient(ellipse 50% 40% at 85% 10%, rgba(245, 158, 11, .13), transparent 70%);
+      pointer-events: none;
+    }
+    @media (prefers-reduced-motion: no-preference) {
+      .hero::before { transition: opacity .3s ease; }
+    }
+
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
     }
@@ -130,11 +167,26 @@
       margin-bottom: .9rem;
     }
 
+    /* Antes: tarjeta plana de un solo color, indistinguible del resto de
+       superficies navy de la página. La franja superior en degradado teal→
+       ámbar usa exactamente los 2 tokens de zona permitidos en decoración
+       (ver nota del hero) y funciona como "sello" visual de que esto es un
+       dato real capturado, no una ilustración — refuerzo, no adorno. */
     .proof-card {
+      position: relative;
       background: var(--navy-surface);
       border: 1px solid var(--navy-line);
       border-radius: .75rem;
-      padding: 1.25rem 1.35rem;
+      padding: 1.35rem 1.35rem 1.25rem;
+      box-shadow: 0 8px 24px -12px rgba(0, 0, 0, .45);
+      overflow: hidden;
+    }
+    .proof-card::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--teal), var(--amber));
     }
     .proof-zone {
       font-weight: 700;
