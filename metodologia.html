@@ -53,6 +53,21 @@
     .mejora-pendiente strong { color: #A0C4D8; }
     a { color: #24BB89; text-decoration: underline; text-underline-offset: 2px; }
     a:focus-visible { outline: 2px solid #24BB89; outline-offset: 2px; }
+    .cobertura-actual { color: #D0D8E0; margin-top: .75rem; }
+    details { margin-top: 1rem; }
+    details > summary {
+      cursor: pointer;
+      color: #24BB89;
+      font-weight: 600;
+      font-size: .92rem;
+      padding: .5rem 0;
+      list-style: none;
+    }
+    details > summary::-webkit-details-marker { display: none; }
+    details > summary::before { content: "▸ "; display: inline-block; transition: transform .15s; }
+    details[open] > summary::before { transform: rotate(90deg); }
+    details > summary:focus-visible { outline: 2px solid #24BB89; outline-offset: 2px; }
+    details > .details-body { padding-top: .5rem; }
     footer { margin-top: 3rem; color: #8FA8C0; font-size: .875rem; border-top: 1px solid #1D3A5A; padding-top: 1.5rem; }
   </style>
 </head>
@@ -80,6 +95,8 @@
   </header>
 
   <h2>Fuentes de datos</h2>
+
+  <p class="cobertura-actual"><strong>SAVERI cubre hoy Madrid capital.</strong> Más ciudades en desarrollo.</p>
 
   <h3>Datos oficiales</h3>
   <ul>
@@ -113,10 +130,6 @@
   <h3>Señal S1 — Integridad física (conteo absoluto)</h3>
   <p>Cuenta los incidentes de homicidio/asesinato (arts. 138–139 CP) y agresión sexual (arts. 178–180 CP) registrados en el entorno inmediato del punto consultado, en una ventana de varios meses con masa estadística suficiente.</p>
 
-  <div class="nota-honestidad">
-    <strong>Por qué estas dos categorías, y solo estas:</strong> son las que el Código Penal español tipifica con pena privativa de libertad más grave en su tipo básico, y las que los estudios de victimización sitúan consistentemente en la cima de la percepción de inseguridad ciudadana. El criterio es el Código Penal, no una encuesta: es público, estable y verificable por cualquier persona. Esta es la única señal que nunca se oculta por umbral mínimo de datos: un solo homicidio real siempre se muestra.
-  </div>
-
   <table>
     <thead>
       <tr><th>Categoría</th><th>Referencia CP</th><th>Pena tipo básico</th></tr>
@@ -134,10 +147,18 @@
     <li><span class="badge">🔴</span> <strong>Incidentes graves frecuentes</strong> — 3 o más eventos</li>
   </ul>
 
-  <div class="mejora-pendiente">
-    <strong>Nota de honestidad sobre el umbral ≥ 3.</strong><br>
-    El corte en 3 eventos se basa en la distribución real de los barrios de Madrid con datos suficientes: el 68% tiene 0 incidentes de esta señal, y menos del 1% llega a 3 o más. Es un corte empíricamente razonable, pero no procede de ningún estándar externo ni de investigación criminológica. Si en el futuro existiera una fuente que establezca un umbral validado externamente, se adoptaría ese criterio.
-  </div>
+  <details>
+    <summary>Ver el razonamiento completo de la señal S1</summary>
+    <div class="details-body">
+      <div class="nota-honestidad">
+        <strong>Por qué estas dos categorías, y solo estas:</strong> son las que el Código Penal español tipifica con pena privativa de libertad más grave en su tipo básico, y las que los estudios de victimización sitúan consistentemente en la cima de la percepción de inseguridad ciudadana. El criterio es el Código Penal, no una encuesta: es público, estable y verificable por cualquier persona. Esta es la única señal que nunca se oculta por umbral mínimo de datos: un solo homicidio real siempre se muestra.
+      </div>
+      <div class="mejora-pendiente">
+        <strong>Nota de honestidad sobre el umbral ≥ 3.</strong><br>
+        El corte en 3 eventos se basa en la distribución real de los barrios de Madrid con datos suficientes: el 68% tiene 0 incidentes de esta señal, y menos del 1% llega a 3 o más. Es un corte empíricamente razonable, pero no procede de ningún estándar externo ni de investigación criminológica. Si en el futuro existiera una fuente que establezca un umbral validado externamente, se adoptaría ese criterio.
+      </div>
+    </div>
+  </details>
 
   <h3>Señal S2 — Patrimonial (percentil relativo)</h3>
   <p>Cuenta robo con violencia o intimidación (art. 242 CP), hurtos y carterismo (arts. 234–236 CP) y ocupación ilegal (art. 245 CP). El resultado se compara con la distribución real de todos los barrios con datos suficientes.</p>
@@ -145,9 +166,12 @@
   <h3>Señal S3 — Otros avisos (percentil relativo)</h3>
   <p>Cuenta agresiones con lesiones (arts. 147–150 CP), tráfico de drogas (art. 368 CP) y alteraciones del orden público (art. 557 CP). Misma lógica de percentil que S2, calculada de forma independiente.</p>
 
-  <div class="nota-honestidad">
-    <strong>Por qué "agresión con lesiones" va en Otros avisos y no en Integridad física:</strong> los datos de la Policía Municipal de Madrid no incluyen el resultado de la agresión sobre la víctima — no se puede distinguir, a nivel de dato, una pelea de bar con lesión leve de una agresión con lesiones permanentes. Clasificar esta categoría en la señal de integridad física introduciría falsos positivos sistemáticos. Cuando exista el campo <em>resultado_victima</em> (lesión temporal / permanente / muerte, según la escala de la Ley 35/1995), los casos graves pasarán a S1. Hasta entonces, se documenta como limitación explícita. Por el mismo motivo, <strong>robo con violencia</strong> se mide por percentil (S2) y no por conteo absoluto (S1): el dato de origen no distingue el grado de violencia o intimidación empleado caso por caso.
-  </div>
+  <details>
+    <summary>Ver por qué "agresión con lesiones" no está en Integridad física</summary>
+    <div class="details-body nota-honestidad">
+      Los datos de la Policía Municipal de Madrid no incluyen el resultado de la agresión sobre la víctima — no se puede distinguir, a nivel de dato, una pelea de bar con lesión leve de una agresión con lesiones permanentes. Clasificar esta categoría en la señal de integridad física introduciría falsos positivos sistemáticos. Cuando exista el campo <em>resultado_victima</em> (lesión temporal / permanente / muerte, según la escala de la Ley 35/1995), los casos graves pasarán a S1. Hasta entonces, se documenta como limitación explícita. Por el mismo motivo, <strong>robo con violencia</strong> se mide por percentil (S2) y no por conteo absoluto (S1): el dato de origen no distingue el grado de violencia o intimidación empleado caso por caso.
+    </div>
+  </details>
 
   <p>S2 y S3 comparten la misma escala de percentil, con solo tres niveles (no cuatro): un corte por debajo de la media, uno por encima, y un tercero para la actividad más alta:</p>
   <ul>
@@ -159,35 +183,40 @@
   <h3>Badge de cabecera</h3>
   <p>Cuando la zona tiene datos suficientes, S2 y S3 se muestran por separado, cada una con su propio nivel. Para la cabecera del resultado y otros usos internos (comparación de zonas, sesión de usuario), gana siempre la peor señal: si S1 tiene 1 o más incidentes, la cabecera es S1 — nunca se oculta por un umbral mínimo, ni siquiera si S2/S3 son bajas. Si S1 es 0, gana la señal (S2 o S3) con el percentil más alto.</p>
 
-  <h2>Líneas de mejora documentadas</h2>
-
-  <p>Dos criterios adicionales <strong>no están aplicados hoy</strong>, por falta de fuente suficientemente robusta. Se documentan aquí explícitamente, no como huecos ocultos, sino como mejoras concretas con su motivo:</p>
-
-  <div class="mejora-pendiente">
-    <strong>Percepción ciudadana de miedo por tipo de delito.</strong><br>
-    Las encuestas de victimización disponibles en España (CIS, Ministerio del Interior, Barómetro de Seguridad) miden "delincuencia en general" sin desglose por categoría de delito con periodicidad y muestra suficiente para ser usadas como ponderador cuantitativo. Las fuentes académicas consultadas confirman que no existe hoy en España una encuesta estructural desglosada por tipo de delito análoga a la British Crime Survey o las encuestas ICVS con suficiente representatividad regional. Cuando exista esa fuente, el criterio de percepción entrará en la ponderación. Hasta entonces, no.
-  </div>
-
-  <div class="mejora-pendiente">
-    <strong>Consecuencia sobre la víctima (lesión temporal / permanente / muerte).</strong><br>
-    La Ley 35/1995 establece una escala de indemnización graduada por la consecuencia real del delito sobre la víctima, independientemente de la categoría. Aplicar ese criterio requeriría un campo estructurado de resultado en cada evento y una tasa de completitud alta en los datos. Hoy ese campo no existe en nuestro sistema: los datos de la Policía Municipal (que representan más del 99% del total actual) son conteos de incidentes por categoría sin detalle de resultado individual. La información de consecuencia está parcialmente disponible en los textos de prensa que ya procesa nuestro sistema, pero en un volumen insuficiente para ser estadísticamente significativa a nivel de zona. Esta mejora requiere un cambio en el pipeline de captura y una fuente con mejor cobertura. Queda documentada como trabajo futuro, con su alcance y motivo definidos.
-  </div>
-
-  <h2>Corrección por infradenuncia</h2>
-  <p>Los delitos registrados representan solo una fracción de los delitos reales. Según el Ministerio del Interior, la tasa de infradenuncia varía entre el 30% (homicidios) y el 80% (agresiones sexuales). En la versión actual no aplicamos corrección explícita, pero esto implica que los scores son conservadores: la realidad puede ser peor que lo registrado.</p>
-
   <h2>Ventana temporal</h2>
   <p>El análisis de zona usa una ventana de varios meses para tener masa estadística suficiente. La sección "Esta semana / Este mes" usa ventanas más cortas para detectar actividad reciente.</p>
 
-  <h2>Limitaciones explícitas</h2>
-  <ul>
-    <li>Los datos de prensa tienen sesgo hacia incidentes graves y mediáticos</li>
-    <li>Las coordenadas de barrio son centroides aproximados, no la ubicación exacta del incidente</li>
-    <li>La cobertura geográfica es desigual: Madrid capital tiene más datos que otros municipios</li>
-    <li>Los incidentes de homicidio expresivo (riñas impulsivas) no se muestran en el mapa público</li>
-    <li>Los incidentes con confianza de geolocalización &lt; 0.6 no se publican hasta revisión manual</li>
-    <li>La escala penal no refleja necesariamente la percepción subjetiva de riesgo del ciudadano medio, ni la consecuencia real sobre la víctima en cada incidente concreto</li>
-  </ul>
+  <details>
+    <summary>Ver el desglose técnico completo (líneas de mejora, infradenuncia, limitaciones)</summary>
+    <div class="details-body">
+      <h3>Líneas de mejora documentadas</h3>
+
+      <p>Dos criterios adicionales <strong>no están aplicados hoy</strong>, por falta de fuente suficientemente robusta. Se documentan aquí explícitamente, no como huecos ocultos, sino como mejoras concretas con su motivo:</p>
+
+      <div class="mejora-pendiente">
+        <strong>Percepción ciudadana de miedo por tipo de delito.</strong><br>
+        Las encuestas de victimización disponibles en España (CIS, Ministerio del Interior, Barómetro de Seguridad) miden "delincuencia en general" sin desglose por categoría de delito con periodicidad y muestra suficiente para ser usadas como ponderador cuantitativo. Las fuentes académicas consultadas confirman que no existe hoy en España una encuesta estructural desglosada por tipo de delito análoga a la British Crime Survey o las encuestas ICVS con suficiente representatividad regional. Cuando exista esa fuente, el criterio de percepción entrará en la ponderación. Hasta entonces, no.
+      </div>
+
+      <div class="mejora-pendiente">
+        <strong>Consecuencia sobre la víctima (lesión temporal / permanente / muerte).</strong><br>
+        La Ley 35/1995 establece una escala de indemnización graduada por la consecuencia real del delito sobre la víctima, independientemente de la categoría. Aplicar ese criterio requeriría un campo estructurado de resultado en cada evento y una tasa de completitud alta en los datos. Hoy ese campo no existe en nuestro sistema: los datos de la Policía Municipal (que representan más del 99% del total actual) son conteos de incidentes por categoría sin detalle de resultado individual. La información de consecuencia está parcialmente disponible en los textos de prensa que ya procesa nuestro sistema, pero en un volumen insuficiente para ser estadísticamente significativa a nivel de zona. Esta mejora requiere un cambio en el pipeline de captura y una fuente con mejor cobertura. Queda documentada como trabajo futuro, con su alcance y motivo definidos.
+      </div>
+
+      <h3>Corrección por infradenuncia</h3>
+      <p>Los delitos registrados representan solo una fracción de los delitos reales. Según el Ministerio del Interior, la tasa de infradenuncia varía entre el 30% (homicidios) y el 80% (agresiones sexuales). En la versión actual no aplicamos corrección explícita, pero esto implica que los scores son conservadores: la realidad puede ser peor que lo registrado.</p>
+
+      <h3>Limitaciones explícitas</h3>
+      <ul>
+        <li>Los datos de prensa tienen sesgo hacia incidentes graves y mediáticos</li>
+        <li>Las coordenadas de barrio son centroides aproximados, no la ubicación exacta del incidente</li>
+        <li>La cobertura geográfica es desigual: Madrid capital tiene más datos que otros municipios</li>
+        <li>Los incidentes de homicidio expresivo (riñas impulsivas) no se muestran en el mapa público</li>
+        <li>Los incidentes con confianza de geolocalización &lt; 0.6 no se publican hasta revisión manual</li>
+        <li>La escala penal no refleja necesariamente la percepción subjetiva de riesgo del ciudadano medio, ni la consecuencia real sobre la víctima en cada incidente concreto</li>
+      </ul>
+    </div>
+  </details>
 
   <h2>Contacto para correcciones</h2>
   <p>Si detectas un error en los datos o en la metodología, escríbenos a <a href="mailto:hola@saveri.io">hola@saveri.io</a>. Revisamos todas las comunicaciones y respondemos en 48h hábiles.</p>
