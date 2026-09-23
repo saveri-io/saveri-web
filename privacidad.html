@@ -22,61 +22,129 @@
   <link rel="stylesheet" href="/assets/nav.css">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* Sistema de diseño 2026-09-23 — ver metodologia.html para el razonamiento
+       completo (polaridad de lectura, Legge/Rubin/Luebker 1987, Piepenbrock et
+       al. 2013). Header navy idéntico en las 4 páginas = ancla de marca. */
     body {
+      background: #F5F0E8;
+      color: #0F2B4A;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+    }
+    header {
       background-color: #0F2B4A;
       background-image: radial-gradient(rgba(245, 240, 232, .05) 1px, transparent 1px);
       background-size: 22px 22px;
-      color: #F5F0E8;
-      font-family: Inter, Arial, sans-serif;
-      font-size: 16px;
-      line-height: 1.7;
-      padding: 2rem 1rem;
-      max-width: 720px;
-      margin: 0 auto;
+      padding: 1.5rem 1rem 1.75rem;
     }
-    header { margin-bottom: 2.5rem; }
+    .header-inner { max-width: 720px; margin: 0 auto; }
+    .page-content { max-width: 720px; margin: 0 auto; padding: 2rem 1rem; }
     .logo { color: #1D9E75; font-weight: 700; font-size: 1.25rem; letter-spacing: .04em; text-decoration: none; }
     .logo:focus-visible { outline: 2px solid #1D9E75; outline-offset: 3px; }
-    h1 { font-size: 1.75rem; font-weight: 700; margin-top: .5rem; }
+    h1 { font-size: 1.75rem; font-weight: 700; margin-top: .5rem; color: #F5F0E8; }
     .updated { color: #8FA8C0; font-size: .875rem; margin-top: .25rem; }
-    h2 { font-size: 1.1rem; font-weight: 700; color: #1D9E75; margin: 2rem 0 .5rem; }
-    h3 { font-size: 1rem; font-weight: 700; color: #F5F0E8; margin: 1.25rem 0 .5rem; }
-    p, li { color: #D0D8E0; }
+    h2 { font-size: 1.1rem; font-weight: 700; color: #0F7A57; margin: 2rem 0 .5rem; }
+    h3 { font-size: 1rem; font-weight: 700; color: #33465A; margin: 1.25rem 0 .5rem; }
+    p, li { color: #33465A; }
     ul { padding-left: 1.5rem; margin-top: .5rem; }
     li { margin-bottom: .25rem; }
-    a { color: #24BB89; text-decoration: underline; text-underline-offset: 2px; }
-    a:focus-visible { outline: 2px solid #24BB89; outline-offset: 2px; }
-    footer { margin-top: 3rem; color: #8FA8C0; font-size: .875rem; border-top: 1px solid #1D3A5A; padding-top: 1.5rem; }
+    a { color: #0F7A57; text-decoration: underline; text-underline-offset: 2px; }
+    a:focus-visible { outline: 2px solid #0F7A57; outline-offset: 2px; }
+
+    .toc {
+      background: #ECE6D9;
+      border-radius: .5rem;
+      padding: 1rem 1.25rem;
+      margin: 1.5rem 0 2rem;
+      font-size: .9rem;
+    }
+    .toc-title { font-weight: 700; color: #33465A; margin-bottom: .5rem; font-size: .78rem; text-transform: uppercase; letter-spacing: .04em; }
+    .toc ol { padding-left: 1.25rem; margin-top: 0; }
+    .toc li { margin-bottom: .15rem; }
+
+    .return-cta {
+      margin-top: 3rem;
+      padding: 1.5rem;
+      background: #ECE6D9;
+      border-radius: .75rem;
+      text-align: center;
+    }
+    .return-cta p { color: #33465A; font-weight: 600; margin-bottom: .85rem; }
+    .btn-return {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: .5rem;
+      background: transparent;
+      border: 1.5px solid #0F7A57;
+      color: #0F7A57;
+      font-weight: 700;
+      font-size: .95rem;
+      text-decoration: none;
+      padding: .75rem 1.25rem;
+      border-radius: .6rem;
+      transition: background .15s ease, color .15s ease;
+    }
+    .btn-return:hover, .btn-return:focus-visible { background: #0F7A57; color: #F5F0E8; }
+    .btn-return:focus-visible { outline: 2px solid #33465A; outline-offset: 2px; }
+
+    footer { margin-top: 3rem; color: #6B7A8C; font-size: .875rem; border-top: 1px solid #D8DEE4; padding-top: 1.5rem; }
+    .footer-nav a { color: #6B7A8C; }
+    .footer-nav a:hover, .footer-nav a:focus-visible { color: #0F7A57; }
+    .footer-nav a[aria-current="page"] { color: #33465A; }
+    .footer-nav .sep { color: #B8C0C8; }
   </style>
 </head>
 <body>
   <header>
-    <div class="site-header">
-      <a href="/" class="logo">SAVERI</a>
-      <div class="site-nav">
-        <button type="button" id="nav-toggle" class="nav-toggle"
-                aria-expanded="true" aria-controls="nav-panel" aria-label="Menú">
-          <span class="nav-toggle-icon" aria-hidden="true"></span>
-        </button>
-        <nav id="nav-panel" class="nav-panel" aria-label="Menú principal">
-          <ul>
-            <li><a href="/">Inicio</a></li>
-            <li><a href="/metodologia.html">Metodología</a></li>
-            <li><a href="/privacidad.html" aria-current="page">Privacidad</a></li>
-            <li><a href="/terminos.html">Términos</a></li>
-          </ul>
-        </nav>
+    <div class="header-inner">
+      <div class="site-header">
+        <a href="/" class="logo">SAVERI</a>
+        <div class="site-nav">
+          <button type="button" id="nav-toggle" class="nav-toggle"
+                  aria-expanded="true" aria-controls="nav-panel" aria-label="Menú">
+            <span class="nav-toggle-icon" aria-hidden="true"></span>
+          </button>
+          <nav id="nav-panel" class="nav-panel" aria-label="Menú principal">
+            <ul>
+              <li><a href="/">Inicio</a></li>
+              <li><a href="/metodologia.html">Metodología</a></li>
+              <li><a href="/privacidad.html" aria-current="page">Privacidad</a></li>
+              <li><a href="/terminos.html">Términos</a></li>
+            </ul>
+          </nav>
+        </div>
       </div>
+      <h1>Política de Privacidad</h1>
+      <div class="updated">Última actualización: 13 de septiembre de 2026</div>
     </div>
-    <h1>Política de Privacidad</h1>
-    <div class="updated">Última actualización: 13 de septiembre de 2026</div>
   </header>
 
-  <h2>1. Quiénes somos</h2>
+  <div class="page-content">
+
+  <nav class="toc" aria-label="Contenido de esta página">
+    <div class="toc-title">En esta página</div>
+    <ol>
+      <li><a href="#quienes-somos">1. Quiénes somos</a></li>
+      <li><a href="#que-recogemos">2. Qué datos recogemos</a></li>
+      <li><a href="#nunca-recogemos">3. Lo que nunca recogemos</a></li>
+      <li><a href="#base-legal">4. Base legal del tratamiento</a></li>
+      <li><a href="#terceros">5. Terceros y transferencias</a></li>
+      <li><a href="#retencion">6. Retención de datos</a></li>
+      <li><a href="#derechos">7. Tus derechos (RGPD)</a></li>
+      <li><a href="#seguridad">8. Seguridad</a></li>
+      <li><a href="#menores">9. Menores de edad</a></li>
+      <li><a href="#cambios">10. Cambios en esta política</a></li>
+    </ol>
+  </nav>
+
+  <h2 id="quienes-somos">1. Quiénes somos</h2>
   <p>SAVERI es una plataforma de información sobre seguridad ciudadana basada en fuentes públicas (prensa, datos policiales abiertos) y aportaciones voluntarias de usuarios del bot de Telegram <strong>@SAVERIOFICIAL_BOT</strong>. Operamos bajo jurisdicción de la Unión Europea, con nuestra base de datos alojada en Frankfurt (Alemania) — Espacio Económico Europeo.</p>
   <p>Contacto: <a href="mailto:hola@saveri.io">hola@saveri.io</a></p>
 
-  <h2>2. Qué datos recogemos</h2>
+  <h2 id="que-recogemos">2. Qué datos recogemos</h2>
   <ul>
     <li>Identificador de Telegram (número anónimo, no nombre ni teléfono)</li>
     <li>Consultas de zona que nos haces (barrio, calle o municipio que escribes o seleccionas)</li>
@@ -86,7 +154,7 @@
     <li>Número total de consultas realizadas y fecha de tu primer uso, para saber cuánta confianza dar a tus aportaciones (ver apartado 6)</li>
   </ul>
 
-  <h2>3. Lo que nunca recogemos</h2>
+  <h2 id="nunca-recogemos">3. Lo que nunca recogemos</h2>
   <ul>
     <li>Nombre, apellidos ni DNI/NIE</li>
     <li>Número de teléfono</li>
@@ -96,7 +164,7 @@
     <li>Datos de salud, ideología, religión u origen étnico — si los mencionas dentro de un reporte, no los usamos para clasificar, mostrar ni compartir esa información con nadie (ver apartado 5)</li>
   </ul>
 
-  <h2>4. Base legal del tratamiento</h2>
+  <h2 id="base-legal">4. Base legal del tratamiento</h2>
   <p>La base legal varía según lo que hagas en el bot:</p>
   <ul>
     <li><strong>Consultar una zona:</strong> lo hacemos porque tú nos lo pides directamente (Art. 6.1.b RGPD — es la prestación del servicio que nos solicitas al escribirnos). No necesitamos pedirte un consentimiento aparte para esto, del mismo modo que un buscador no te pide permiso especial cada vez que escribes algo.</li>
@@ -109,7 +177,7 @@
   <h3>4.1 Aviso de lanzamiento de la app</h3>
   <p>Si el usuario pulsa <em>«Avísame cuando la app esté lista»</em>, guardamos únicamente su identificador de Telegram (user ID) para enviarle una notificación única cuando la app esté disponible. Este tratamiento se basa en el consentimiento explícito del usuario (Art. 6.1.a RGPD). El usuario puede retirar su consentimiento en cualquier momento escribiendo <strong>/olvidame</strong> en el bot.</p>
 
-  <h2>5. Terceros y transferencias</h2>
+  <h2 id="terceros">5. Terceros y transferencias</h2>
   <ul>
     <li><strong>Supabase (Frankfurt, Alemania)</strong>: base de datos. Cumple RGPD, sin transferencia fuera del Espacio Económico Europeo.</li>
     <li><strong>Telegram</strong>: mensajería. Sus propios términos aplican.</li>
@@ -119,7 +187,7 @@
   </ul>
   <p>No vendemos ni comercializamos tus datos con nadie. Solo cedemos el contenido de un reporte concreto a las <strong>Fuerzas y Cuerpos de Seguridad</strong> cuando existe una obligación legal de hacerlo (Art. 6.1.c RGPD): un agente identificado nos presenta un oficio motivado con referencia a diligencias policiales o judiciales, una persona de SAVERI revisa y aprueba manualmente cada solicitud antes de entregar nada, y registramos cada entrega (y cada rechazo) para poder acreditarlo. No entregamos nada por canales no verificados ni de forma automática.</p>
 
-  <h2>6. Retención de datos</h2>
+  <h2 id="retencion">6. Retención de datos</h2>
   <ul>
     <li>Contenidos UGC (texto, imágenes, vídeo, audio): 90 días desde la aportación si no se ha escalado a un procedimiento; los escalados siguen el plazo del procedimiento correspondiente</li>
     <li>Contador de consultas y fecha de primer uso: se mantiene mientras uses el bot, para calcular el nivel de confianza en tus aportaciones — no incluye el contenido de tus búsquedas, solo el número</li>
@@ -129,18 +197,23 @@
     <li>Solicitudes de eliminación: 30 días hábiles</li>
   </ul>
 
-  <h2>7. Tus derechos (RGPD)</h2>
+  <h2 id="derechos">7. Tus derechos (RGPD)</h2>
   <p>Tienes derecho a acceder, rectificar, suprimir, portar y oponerte al tratamiento de tus datos. Escribe a <a href="mailto:hola@saveri.io">hola@saveri.io</a> indicando tu identificador de Telegram.</p>
   <p>También puedes presentar reclamación ante tu autoridad de control nacional (en España: AEPD, <a href="https://www.aepd.es" target="_blank" rel="noopener">aepd.es</a>).</p>
 
-  <h2>8. Seguridad</h2>
+  <h2 id="seguridad">8. Seguridad</h2>
   <p>Los datos se almacenan cifrados en reposo. Las comunicaciones se realizan siempre mediante TLS. El acceso interno está restringido por roles y auditable. Determinados registros con valor de prueba (por ejemplo, artículos de prensa originales) se conservan además con medidas adicionales de integridad que impiden su modificación posterior.</p>
 
-  <h2>9. Menores de edad</h2>
+  <h2 id="menores">9. Menores de edad</h2>
   <p>SAVERI no está dirigido a menores de 16 años. Si detectamos uso por menores, eliminamos los datos inmediatamente.</p>
 
-  <h2>10. Cambios en esta política</h2>
+  <h2 id="cambios">10. Cambios en esta política</h2>
   <p>Notificaremos cambios relevantes mediante un mensaje en el bot con al menos 7 días de antelación. La versión vigente está siempre en <a href="https://saveri.io/privacidad">saveri.io/privacidad</a>.</p>
+
+  <div class="return-cta">
+    <p>¿Ya has resuelto tu duda? Consulta tu zona ahora.</p>
+    <a class="btn-return" href="https://t.me/SAVERIOFICIAL_BOT?start=web_privacidad" target="_blank" rel="noopener">Abrir el bot en Telegram</a>
+  </div>
 
   <footer>
     <nav class="footer-nav" aria-label="Enlaces del pie">
@@ -151,6 +224,8 @@
     </nav>
     <p>SAVERI · <a href="mailto:hola@saveri.io">hola@saveri.io</a></p>
   </footer>
+
+  </div>
   <script src="/assets/nav.js"></script>
 </body>
 </html>

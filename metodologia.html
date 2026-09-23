@@ -22,57 +22,68 @@
   <link rel="stylesheet" href="/assets/nav.css">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* Sistema de diseño 2026-09-23 (creative-studio-lead + behavioral-product-lead):
+       polaridad de fondo por tipo de tarea de lectura, no por gusto. El navy se
+       queda en el header (banda idéntica en las 4 páginas — ancla de reconocimiento
+       de marca) y en la portada (contenido corto, escaneado, sin fatiga de lectura).
+       Estas 3 páginas de lectura densa pasan a fondo crema: hay evidencia real
+       (Legge, Rubin & Luebker 1987; Piepenbrock et al. 2013, Ergonomics) de que el
+       texto oscuro sobre fondo claro rinde mejor en lectura sostenida y reduce
+       halación en usuarios con astigmatismo (~30% de adultos). No es "porque sí". */
     body {
+      background: #F5F0E8;
+      color: #0F2B4A;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+    }
+    header {
       background-color: #0F2B4A;
       background-image: radial-gradient(rgba(245, 240, 232, .05) 1px, transparent 1px);
       background-size: 22px 22px;
-      color: #F5F0E8;
-      font-family: Inter, Arial, sans-serif;
-      font-size: 16px;
-      line-height: 1.7;
-      padding: 2rem 1rem;
-      max-width: 720px;
-      margin: 0 auto;
+      padding: 1.5rem 1rem 1.75rem;
     }
-    header { margin-bottom: 2.5rem; }
+    .header-inner { max-width: 720px; margin: 0 auto; }
+    .page-content { max-width: 720px; margin: 0 auto; padding: 2rem 1rem; }
     .logo { color: #1D9E75; font-weight: 700; font-size: 1.25rem; letter-spacing: .04em; text-decoration: none; }
     .logo:focus-visible { outline: 2px solid #1D9E75; outline-offset: 3px; }
-    h1 { font-size: 1.75rem; font-weight: 700; margin-top: .5rem; }
+    h1 { font-size: 1.75rem; font-weight: 700; margin-top: .5rem; color: #F5F0E8; }
     .updated { color: #8FA8C0; font-size: .875rem; margin-top: .25rem; }
-    h2 { font-size: 1.1rem; font-weight: 700; color: #1D9E75; margin: 2rem 0 .5rem; }
-    h3 { font-size: 1rem; font-weight: 600; color: #A0C4D8; margin: 1.25rem 0 .4rem; }
-    p, li { color: #D0D8E0; }
+    h2 { font-size: 1.1rem; font-weight: 700; color: #0F7A57; margin: 2rem 0 .5rem; }
+    h3 { font-size: 1rem; font-weight: 600; color: #33465A; margin: 1.25rem 0 .4rem; }
+    p, li { color: #33465A; }
     ul, ol { padding-left: 1.5rem; margin-top: .5rem; }
     li { margin-bottom: .25rem; }
     table { width: 100%; border-collapse: collapse; margin-top: .75rem; font-size: .9rem; }
-    th { background: #1D3A5A; color: #1D9E75; text-align: left; padding: .5rem .75rem; }
-    td { padding: .4rem .75rem; border-bottom: 1px solid #1D3A5A; color: #D0D8E0; }
-    td.ref { color: #8FA8C0; font-size: .82rem; white-space: nowrap; }
+    th { background: #E1E6EA; color: #0F7A57; text-align: left; padding: .5rem .75rem; }
+    td { padding: .4rem .75rem; border-bottom: 1px solid #D8DEE4; color: #33465A; }
+    td.ref { color: #6B7A8C; font-size: .82rem; white-space: nowrap; }
     .badge { display: inline-block; width: .85rem; text-align: center; }
     .nota-honestidad {
-      background: #0D2238;
-      border-left: 3px solid #1D9E75;
+      background: #ECE6D9;
+      border-left: 3px solid #0F7A57;
       padding: .75rem 1rem;
       margin-top: 1rem;
       font-size: .9rem;
-      color: #A0C4D8;
+      color: #33465A;
     }
     .mejora-pendiente {
-      background: #0D2238;
-      border-left: 3px solid #4A6A8A;
+      background: #ECE6D9;
+      border-left: 3px solid #7C8A9A;
       padding: .75rem 1rem;
       margin-top: .75rem;
       font-size: .9rem;
-      color: #8FA8C0;
+      color: #4A5A70;
     }
-    .mejora-pendiente strong { color: #A0C4D8; }
-    a { color: #24BB89; text-decoration: underline; text-underline-offset: 2px; }
-    a:focus-visible { outline: 2px solid #24BB89; outline-offset: 2px; }
-    .cobertura-actual { color: #D0D8E0; margin-top: .75rem; }
+    .mejora-pendiente strong { color: #33465A; }
+    a { color: #0F7A57; text-decoration: underline; text-underline-offset: 2px; }
+    a:focus-visible { outline: 2px solid #0F7A57; outline-offset: 2px; }
+    .cobertura-actual { color: #33465A; margin-top: .75rem; }
     details { margin-top: 1rem; }
     details > summary {
       cursor: pointer;
-      color: #24BB89;
+      color: #0F7A57;
       font-weight: 600;
       font-size: .92rem;
       padding: .5rem 0;
@@ -81,35 +92,98 @@
     details > summary::-webkit-details-marker { display: none; }
     details > summary::before { content: "▸ "; display: inline-block; transition: transform .15s; }
     details[open] > summary::before { transform: rotate(90deg); }
-    details > summary:focus-visible { outline: 2px solid #24BB89; outline-offset: 2px; }
+    details > summary:focus-visible { outline: 2px solid #0F7A57; outline-offset: 2px; }
     details > .details-body { padding-top: .5rem; }
-    footer { margin-top: 3rem; color: #8FA8C0; font-size: .875rem; border-top: 1px solid #1D3A5A; padding-top: 1.5rem; }
+
+    /* Índice de contenido — behavioral-product-lead: reduce el coste de encontrar
+       una respuesta concreta en una página larga, independiente de cualquier CTA. */
+    .toc {
+      background: #ECE6D9;
+      border-radius: .5rem;
+      padding: 1rem 1.25rem;
+      margin: 1.5rem 0 2rem;
+      font-size: .9rem;
+    }
+    .toc-title { font-weight: 700; color: #33465A; margin-bottom: .5rem; font-size: .78rem; text-transform: uppercase; letter-spacing: .04em; }
+    .toc ol { padding-left: 1.25rem; margin-top: 0; }
+    .toc li { margin-bottom: .15rem; }
+
+    /* CTA de retorno de bajo énfasis — behavioral-product-lead: recaptura al
+       visitante justo cuando su duda de confianza ya está resuelta, mismo nivel
+       de énfasis que el CTA terciario de waitlist de la portada. Nunca un CTA
+       primario aquí: sería tono-sordo con una página que existe para dar
+       transparencia, no para vender. */
+    .return-cta {
+      margin-top: 3rem;
+      padding: 1.5rem;
+      background: #ECE6D9;
+      border-radius: .75rem;
+      text-align: center;
+    }
+    .return-cta p { color: #33465A; font-weight: 600; margin-bottom: .85rem; }
+    .btn-return {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: .5rem;
+      background: transparent;
+      border: 1.5px solid #0F7A57;
+      color: #0F7A57;
+      font-weight: 700;
+      font-size: .95rem;
+      text-decoration: none;
+      padding: .75rem 1.25rem;
+      border-radius: .6rem;
+      transition: background .15s ease, color .15s ease;
+    }
+    .btn-return:hover, .btn-return:focus-visible { background: #0F7A57; color: #F5F0E8; }
+    .btn-return:focus-visible { outline: 2px solid #33465A; outline-offset: 2px; }
+
+    footer { margin-top: 3rem; color: #6B7A8C; font-size: .875rem; border-top: 1px solid #D8DEE4; padding-top: 1.5rem; }
+    .footer-nav a { color: #6B7A8C; }
+    .footer-nav a:hover, .footer-nav a:focus-visible { color: #0F7A57; }
+    .footer-nav a[aria-current="page"] { color: #33465A; }
+    .footer-nav .sep { color: #B8C0C8; }
   </style>
 </head>
 <body>
   <header>
-    <div class="site-header">
-      <a href="/" class="logo">SAVERI</a>
-      <div class="site-nav">
-        <button type="button" id="nav-toggle" class="nav-toggle"
-                aria-expanded="true" aria-controls="nav-panel" aria-label="Menú">
-          <span class="nav-toggle-icon" aria-hidden="true"></span>
-        </button>
-        <nav id="nav-panel" class="nav-panel" aria-label="Menú principal">
-          <ul>
-            <li><a href="/">Inicio</a></li>
-            <li><a href="/metodologia.html" aria-current="page">Metodología</a></li>
-            <li><a href="/privacidad.html">Privacidad</a></li>
-            <li><a href="/terminos.html">Términos</a></li>
-          </ul>
-        </nav>
+    <div class="header-inner">
+      <div class="site-header">
+        <a href="/" class="logo">SAVERI</a>
+        <div class="site-nav">
+          <button type="button" id="nav-toggle" class="nav-toggle"
+                  aria-expanded="true" aria-controls="nav-panel" aria-label="Menú">
+            <span class="nav-toggle-icon" aria-hidden="true"></span>
+          </button>
+          <nav id="nav-panel" class="nav-panel" aria-label="Menú principal">
+            <ul>
+              <li><a href="/">Inicio</a></li>
+              <li><a href="/metodologia.html" aria-current="page">Metodología</a></li>
+              <li><a href="/privacidad.html">Privacidad</a></li>
+              <li><a href="/terminos.html">Términos</a></li>
+            </ul>
+          </nav>
+        </div>
       </div>
+      <h1>Metodología</h1>
+      <div class="updated">Última actualización: septiembre 2026 · Versión 2.1</div>
     </div>
-    <h1>Metodología</h1>
-    <div class="updated">Última actualización: septiembre 2026 · Versión 2.1</div>
   </header>
 
-  <h2>Fuentes de datos</h2>
+  <div class="page-content">
+
+  <nav class="toc" aria-label="Contenido de esta página">
+    <div class="toc-title">En esta página</div>
+    <ol>
+      <li><a href="#fuentes">Fuentes de datos</a></li>
+      <li><a href="#calculo">Cálculo del badge de seguridad</a></li>
+      <li><a href="#ventana">Ventana temporal</a></li>
+      <li><a href="#contacto">Contacto para correcciones</a></li>
+    </ol>
+  </nav>
+
+  <h2 id="fuentes">Fuentes de datos</h2>
 
   <p class="cobertura-actual"><strong>SAVERI cubre hoy Madrid capital.</strong> Más ciudades en desarrollo.</p>
 
@@ -135,7 +209,7 @@
     <li>Eliminación automática a los 90 días</li>
   </ul>
 
-  <h2>Cálculo del badge de seguridad</h2>
+  <h2 id="calculo">Cálculo del badge de seguridad</h2>
 
   <h3>Por qué varias señales en lugar de una</h3>
   <p>Hasta 2004, el FBI estadounidense combinaba todos los delitos en un único "Crime Index". Ese índice fue abandonado porque sumaba delitos graves y leves en una sola cifra: un barrio con muchos robos de bicicleta podía aparecer como "más peligroso" que otro con varios homicidios pero pocos delitos menores. El problema no era estadístico: era conceptual. Mezclar frecuencia y gravedad en un único número produce información engañosa para quien quiere entender si una zona es <em>peligrosa</em> o simplemente <em>activa</em>.</p>
@@ -198,7 +272,7 @@
   <h3>Badge de cabecera</h3>
   <p>Cuando la zona tiene datos suficientes, S2 y S3 se muestran por separado, cada una con su propio nivel. Para la cabecera del resultado y otros usos internos (comparación de zonas, sesión de usuario), gana siempre la peor señal: si S1 tiene 1 o más incidentes, la cabecera es S1 — nunca se oculta por un umbral mínimo, ni siquiera si S2/S3 son bajas. Si S1 es 0, gana la señal (S2 o S3) con el percentil más alto.</p>
 
-  <h2>Ventana temporal</h2>
+  <h2 id="ventana">Ventana temporal</h2>
   <p>El análisis de zona usa una ventana de varios meses para tener masa estadística suficiente. La sección "Esta semana / Este mes" usa ventanas más cortas para detectar actividad reciente.</p>
 
   <details>
@@ -233,8 +307,13 @@
     </div>
   </details>
 
-  <h2>Contacto para correcciones</h2>
+  <h2 id="contacto">Contacto para correcciones</h2>
   <p>Si detectas un error en los datos o en la metodología, escríbenos a <a href="mailto:hola@saveri.io">hola@saveri.io</a>. Revisamos todas las comunicaciones y respondemos en 48h hábiles.</p>
+
+  <div class="return-cta">
+    <p>¿Ya has resuelto tu duda? Consulta tu zona ahora.</p>
+    <a class="btn-return" href="https://t.me/SAVERIOFICIAL_BOT?start=web_metodologia" target="_blank" rel="noopener">Abrir el bot en Telegram</a>
+  </div>
 
   <footer>
     <nav class="footer-nav" aria-label="Enlaces del pie">
@@ -245,6 +324,8 @@
     </nav>
     <p>SAVERI · <a href="mailto:hola@saveri.io">hola@saveri.io</a></p>
   </footer>
+
+  </div>
   <script src="/assets/nav.js"></script>
 </body>
 </html>

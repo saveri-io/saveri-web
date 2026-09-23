@@ -22,62 +22,129 @@
   <link rel="stylesheet" href="/assets/nav.css">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* Sistema de diseño 2026-09-23 — ver metodologia.html para el razonamiento
+       completo (polaridad de lectura, Legge/Rubin/Luebker 1987, Piepenbrock et
+       al. 2013). Header navy idéntico en las 4 páginas = ancla de marca. */
     body {
+      background: #F5F0E8;
+      color: #0F2B4A;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+    }
+    header {
       background-color: #0F2B4A;
       background-image: radial-gradient(rgba(245, 240, 232, .05) 1px, transparent 1px);
       background-size: 22px 22px;
-      color: #F5F0E8;
-      font-family: Inter, Arial, sans-serif;
-      font-size: 16px;
-      line-height: 1.7;
-      padding: 2rem 1rem;
-      max-width: 720px;
-      margin: 0 auto;
+      padding: 1.5rem 1rem 1.75rem;
     }
-    header { margin-bottom: 2.5rem; }
+    .header-inner { max-width: 720px; margin: 0 auto; }
+    .page-content { max-width: 720px; margin: 0 auto; padding: 2rem 1rem; }
     .logo { color: #1D9E75; font-weight: 700; font-size: 1.25rem; letter-spacing: .04em; text-decoration: none; }
     .logo:focus-visible { outline: 2px solid #1D9E75; outline-offset: 3px; }
-    h1 { font-size: 1.75rem; font-weight: 700; margin-top: .5rem; }
+    h1 { font-size: 1.75rem; font-weight: 700; margin-top: .5rem; color: #F5F0E8; }
     .updated { color: #8FA8C0; font-size: .875rem; margin-top: .25rem; }
-    h2 { font-size: 1.1rem; font-weight: 700; color: #1D9E75; margin: 2rem 0 .5rem; }
-    p, li { color: #D0D8E0; }
+    h2 { font-size: 1.1rem; font-weight: 700; color: #0F7A57; margin: 2rem 0 .5rem; }
+    p, li { color: #33465A; }
     ul { padding-left: 1.5rem; margin-top: .5rem; }
     li { margin-bottom: .25rem; }
-    a { color: #24BB89; text-decoration: underline; text-underline-offset: 2px; }
-    a:focus-visible { outline: 2px solid #24BB89; outline-offset: 2px; }
-    footer { margin-top: 3rem; color: #8FA8C0; font-size: .875rem; border-top: 1px solid #1D3A5A; padding-top: 1.5rem; }
+    a { color: #0F7A57; text-decoration: underline; text-underline-offset: 2px; }
+    a:focus-visible { outline: 2px solid #0F7A57; outline-offset: 2px; }
+
+    .toc {
+      background: #ECE6D9;
+      border-radius: .5rem;
+      padding: 1rem 1.25rem;
+      margin: 1.5rem 0 2rem;
+      font-size: .9rem;
+    }
+    .toc-title { font-weight: 700; color: #33465A; margin-bottom: .5rem; font-size: .78rem; text-transform: uppercase; letter-spacing: .04em; }
+    .toc ol { padding-left: 1.25rem; margin-top: 0; }
+    .toc li { margin-bottom: .15rem; }
+
+    .return-cta {
+      margin-top: 3rem;
+      padding: 1.5rem;
+      background: #ECE6D9;
+      border-radius: .75rem;
+      text-align: center;
+    }
+    .return-cta p { color: #33465A; font-weight: 600; margin-bottom: .85rem; }
+    .btn-return {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: .5rem;
+      background: transparent;
+      border: 1.5px solid #0F7A57;
+      color: #0F7A57;
+      font-weight: 700;
+      font-size: .95rem;
+      text-decoration: none;
+      padding: .75rem 1.25rem;
+      border-radius: .6rem;
+      transition: background .15s ease, color .15s ease;
+    }
+    .btn-return:hover, .btn-return:focus-visible { background: #0F7A57; color: #F5F0E8; }
+    .btn-return:focus-visible { outline: 2px solid #33465A; outline-offset: 2px; }
+
+    footer { margin-top: 3rem; color: #6B7A8C; font-size: .875rem; border-top: 1px solid #D8DEE4; padding-top: 1.5rem; }
+    .footer-nav a { color: #6B7A8C; }
+    .footer-nav a:hover, .footer-nav a:focus-visible { color: #0F7A57; }
+    .footer-nav a[aria-current="page"] { color: #33465A; }
+    .footer-nav .sep { color: #B8C0C8; }
   </style>
 </head>
 <body>
   <header>
-    <div class="site-header">
-      <a href="/" class="logo">SAVERI</a>
-      <div class="site-nav">
-        <button type="button" id="nav-toggle" class="nav-toggle"
-                aria-expanded="true" aria-controls="nav-panel" aria-label="Menú">
-          <span class="nav-toggle-icon" aria-hidden="true"></span>
-        </button>
-        <nav id="nav-panel" class="nav-panel" aria-label="Menú principal">
-          <ul>
-            <li><a href="/">Inicio</a></li>
-            <li><a href="/metodologia.html">Metodología</a></li>
-            <li><a href="/privacidad.html">Privacidad</a></li>
-            <li><a href="/terminos.html" aria-current="page">Términos</a></li>
-          </ul>
-        </nav>
+    <div class="header-inner">
+      <div class="site-header">
+        <a href="/" class="logo">SAVERI</a>
+        <div class="site-nav">
+          <button type="button" id="nav-toggle" class="nav-toggle"
+                  aria-expanded="true" aria-controls="nav-panel" aria-label="Menú">
+            <span class="nav-toggle-icon" aria-hidden="true"></span>
+          </button>
+          <nav id="nav-panel" class="nav-panel" aria-label="Menú principal">
+            <ul>
+              <li><a href="/">Inicio</a></li>
+              <li><a href="/metodologia.html">Metodología</a></li>
+              <li><a href="/privacidad.html">Privacidad</a></li>
+              <li><a href="/terminos.html" aria-current="page">Términos</a></li>
+            </ul>
+          </nav>
+        </div>
       </div>
+      <h1>Términos de Uso</h1>
+      <div class="updated">Última actualización: junio 2026</div>
     </div>
-    <h1>Términos de Uso</h1>
-    <div class="updated">Última actualización: junio 2026</div>
   </header>
 
-  <h2>1. Qué es SAVERI</h2>
+  <div class="page-content">
+
+  <nav class="toc" aria-label="Contenido de esta página">
+    <div class="toc-title">En esta página</div>
+    <ol>
+      <li><a href="#que-es">1. Qué es SAVERI</a></li>
+      <li><a href="#limitaciones">2. Limitaciones del servicio</a></li>
+      <li><a href="#uso-aceptable">3. Uso aceptable</a></li>
+      <li><a href="#ugc">4. Contenido generado por usuarios (UGC)</a></li>
+      <li><a href="#propiedad">5. Propiedad intelectual</a></li>
+      <li><a href="#responsabilidad">6. Limitación de responsabilidad</a></li>
+      <li><a href="#modificaciones">7. Modificaciones del servicio</a></li>
+      <li><a href="#ley-aplicable">8. Ley aplicable y resolución de disputas</a></li>
+      <li><a href="#contacto">9. Contacto</a></li>
+    </ol>
+  </nav>
+
+  <h2 id="que-es">1. Qué es SAVERI</h2>
   <p>SAVERI es un servicio de información sobre seguridad ciudadana que agrega, clasifica y muestra datos de fuentes públicas y aportaciones voluntarias. El servicio se proporciona "tal cual", con fines informativos exclusivamente.</p>
 
-  <h2>2. Limitaciones del servicio</h2>
+  <h2 id="limitaciones">2. Limitaciones del servicio</h2>
   <p>SAVERI no es un servicio de emergencias. Ante cualquier situación de peligro, llama al 112. La información mostrada puede estar incompleta, tener retrasos o errores. No debe usarse como única fuente para tomar decisiones de seguridad.</p>
 
-  <h2>3. Uso aceptable</h2>
+  <h2 id="uso-aceptable">3. Uso aceptable</h2>
   <p>Queda prohibido:</p>
   <ul>
     <li>Usar el servicio para identificar, perseguir o acosar a personas</li>
@@ -87,24 +154,29 @@
     <li>Acceder al sistema con identidades falsas en el flujo FFCCS</li>
   </ul>
 
-  <h2>4. Contenido generado por usuarios (UGC)</h2>
+  <h2 id="ugc">4. Contenido generado por usuarios (UGC)</h2>
   <p>Al aportar contenido, garantizas que tienes derecho a compartirlo y que no vulnera derechos de terceros. SAVERI puede verificar, moderar y eliminar contenido sin previo aviso. No publicamos datos personales de víctimas ni sospechosos.</p>
 
-  <h2>5. Propiedad intelectual</h2>
+  <h2 id="propiedad">5. Propiedad intelectual</h2>
   <p>El código, diseño, marca y metodología de SAVERI son propiedad de sus titulares. Los datos de fuentes públicas pertenecen a sus organismos emisores. El UGC aportado por usuarios sigue siendo suyo; nos concedes una licencia no exclusiva para mostrarlo de forma anonimizada.</p>
 
-  <h2>6. Limitación de responsabilidad</h2>
+  <h2 id="responsabilidad">6. Limitación de responsabilidad</h2>
   <p>SAVERI no se responsabiliza de decisiones tomadas exclusivamente en base a la información mostrada, ni de daños derivados de inexactitudes en los datos. La información sobre incidentes refleja lo registrado en fuentes públicas, no necesariamente la realidad completa.</p>
 
-  <h2>7. Modificaciones del servicio</h2>
+  <h2 id="modificaciones">7. Modificaciones del servicio</h2>
   <p>Podemos modificar, suspender o cancelar el servicio con previo aviso de 7 días mediante el bot. Los cambios sustanciales en estos términos se notificarán con al menos 15 días de antelación.</p>
 
-  <h2>8. Ley aplicable y resolución de disputas</h2>
+  <h2 id="ley-aplicable">8. Ley aplicable y resolución de disputas</h2>
   <p>Estos términos se rigen por el derecho de la Unión Europea. Para disputas no resueltas amistosamente, la jurisdicción será la del domicilio del usuario consumidor según la normativa EU aplicable.</p>
 
-  <h2>9. Contacto</h2>
+  <h2 id="contacto">9. Contacto</h2>
   <p>Para consultas legales: <a href="mailto:hola@saveri.io">hola@saveri.io</a><br>
   Para consultas generales: <a href="mailto:hola@saveri.io">hola@saveri.io</a></p>
+
+  <div class="return-cta">
+    <p>¿Ya has resuelto tu duda? Consulta tu zona ahora.</p>
+    <a class="btn-return" href="https://t.me/SAVERIOFICIAL_BOT?start=web_terminos" target="_blank" rel="noopener">Abrir el bot en Telegram</a>
+  </div>
 
   <footer>
     <nav class="footer-nav" aria-label="Enlaces del pie">
@@ -115,6 +187,8 @@
     </nav>
     <p>SAVERI · <a href="mailto:hola@saveri.io">hola@saveri.io</a></p>
   </footer>
+
+  </div>
   <script src="/assets/nav.js"></script>
 </body>
 </html>
